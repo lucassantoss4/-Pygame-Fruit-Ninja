@@ -156,8 +156,7 @@ for i in range(n_logos):
     
 # Variável para o ajuste de velocidade
 clock = pygame.time.Clock()
-FPS = 40
-
+FPS = 45
 
 game = True
 
@@ -175,15 +174,14 @@ while game:
         # if event.type == pygame.KEYUP:
         #     game = False
             
-    # ----- Gera saídas
-    #janela.fill(BRANCO)
-    janela.blit(background, (0,0)) #A - coloquei o fundo na janela
-    
-
     # ----- Atualiza estado do jogo
     pygame.display.update()  # Mostra o novo frame para o jogador
     todas_bombas.update()
-    todas_logos.update()
+    todas_logos.update()        
+            
+    # ----- Gera saídas
+    
+    janela.blit(background, (0,0)) #A - coloquei o fundo na janela
     
     #------- Desenha bombas e logos
     todas_bombas.draw(janela)
