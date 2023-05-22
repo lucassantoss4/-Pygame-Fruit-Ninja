@@ -10,9 +10,7 @@ L <3
 # ----- Importa e inicia pacotes
 import pygame
 import random
-from geral import PRETO, BRANCO, VERMELHO, AMARELO, VERDE, AZUL, ROXO, LARGURA, ALTURA, LARGURA_OBJ, ALTURA_OBJ, bomba_img, lista_logos
-from Classes import Bombas, Logos
-
+from geral import PRETO, BRANCO, VERMELHO, AMARELO, VERDE, AZUL, ROXO, LARGURA, ALTURA
     #A- criei o arquivo geral.py pra guardar coisas que podemos usar frequentemente
 
 
@@ -58,9 +56,3 @@ while game:
 
 # ===== Finalização =====
 pygame.quit()  # Função do PyGame que finaliza os recursos utilizados
-
-##A- Cria grupos
-todas_bombas = pygame.sprite.Group
-for i in range(len()):
-    bomba = Bombas(bomba_img)
-    #all_meteors.add(meteor)
