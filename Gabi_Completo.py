@@ -28,11 +28,11 @@ ROXO = (169, 85, 255)
 
 ### TAMANHOS
 
-LARGURA = 480
+LARGURA = 900
 ALTURA = 600
 
-LARGURA_OBJ = 15
-ALTURA_OBJ = 15
+LARGURA_OBJ = 50
+ALTURA_OBJ = 50
 
 # configurações da tela e fonte do jogo
 janela = pygame.display.set_mode((LARGURA, ALTURA))
@@ -40,8 +40,8 @@ janela.fill(BRANCO)
 fonte = pygame.font.SysFont('Comic Sans MS', 30)
 texto = fonte.render('Fruit Ninja', True, PRETO, BRANCO)
 
-backgroung = pygame.image.load('util/img/background.png').convert() #A- denominei o fundo como background
-backgroung = pygame.transform.scale(backgroung, (LARGURA, ALTURA)) #A- escala
+background = pygame.image.load('util/img/background.png').convert() #A- denominei o fundo como background
+background = pygame.transform.scale(background, (LARGURA, ALTURA)) #A- escala
 pygame.display.set_caption('Fruit Ninja')
 
 ### IMAGENS
@@ -49,35 +49,32 @@ pygame.display.set_caption('Fruit Ninja')
 bomba_img = pygame.image.load('util/img/BOMBA.png').convert_alpha()
 bomba_img = pygame.transform.scale(bomba_img, (ALTURA_OBJ, LARGURA_OBJ))
 
-def imagens_logos(janela):
+faca_img = pygame.image.load('util/img/FACA.png').convert_alpha()
+faca_img = pygame.transform.scale(faca_img, (ALTURA_OBJ, LARGURA_OBJ))
 
-    adm_img = pygame.image.load('util/img/ADM.png').convert_alpha()
-    adm_img = pygame.transform.scale(adm_img, (ALTURA_OBJ, LARGURA_OBJ))
 
-    ccomp_img = pygame.image.load('util/img/CCOMP.png').convert_alpha()
-    ccomp_img = pygame.transform.scale(ccomp_img, (ALTURA_OBJ, LARGURA_OBJ))
+adm_img = pygame.image.load('util/img/ADM.png').convert_alpha()
+adm_img = pygame.transform.scale(adm_img, (ALTURA_OBJ, LARGURA_OBJ))
 
-    direito_img = pygame.image.load('util/img/DIREITO.png').convert_alpha()
-    direito_img = pygame.transform.scale(direito_img, (ALTURA_OBJ, LARGURA_OBJ))
+ccomp_img = pygame.image.load('util/img/CCOMP.png').convert_alpha()
+ccomp_img = pygame.transform.scale(ccomp_img, (ALTURA_OBJ, LARGURA_OBJ))
 
-    ecomp_img = pygame.image.load('util/img/ECOMP.png').convert_alpha()
-    ecomp_img = pygame.transform.scale(ecomp_img, (ALTURA_OBJ, LARGURA_OBJ))
+direito_img = pygame.image.load('util/img/DIREITO.png').convert_alpha()
+direito_img = pygame.transform.scale(direito_img, (ALTURA_OBJ, LARGURA_OBJ))
 
-    econo_img = pygame.image.load('util/img/ECONO.png').convert_alpha()
-    econo_img = pygame.transform.scale(econo_img, (ALTURA_OBJ, LARGURA_OBJ))
+ecomp_img = pygame.image.load('util/img/ECOMP.png').convert_alpha()
+ecomp_img = pygame.transform.scale(ecomp_img, (ALTURA_OBJ, LARGURA_OBJ))
 
-    faca_img = pygame.image.load('util/img/FACA.png').convert_alpha()
-    faca_img = pygame.transform.scale(faca_img, (ALTURA_OBJ, LARGURA_OBJ))
+econo_img = pygame.image.load('util/img/ECONO.png').convert_alpha()
+econo_img = pygame.transform.scale(econo_img, (ALTURA_OBJ, LARGURA_OBJ))
 
-    mec_img = pygame.image.load('util/img/MEC.png').convert_alpha()
-    mec_img = pygame.transform.scale(mec_img, (ALTURA_OBJ, LARGURA_OBJ))
+mec_img = pygame.image.load('util/img/MEC.png').convert_alpha()
+mec_img = pygame.transform.scale(mec_img, (ALTURA_OBJ, LARGURA_OBJ))
 
-    mecat_img = pygame.image.load('util/img/MECAT.png').convert_alpha()
-    mecat_img = pygame.transform.scale(mecat_img, (ALTURA_OBJ, LARGURA_OBJ))
+mecat_img = pygame.image.load('util/img/MECAT.png').convert_alpha()
+mecat_img = pygame.transform.scale(mecat_img, (ALTURA_OBJ, LARGURA_OBJ))
 
-    lista_logos = [adm_img, ccomp_img, direito_img, ecomp_img, econo_img, faca_img, mec_img, mecat_img]
-    
-    return lista_logos
+lista_logos = [adm_img, ccomp_img, direito_img, ecomp_img, econo_img, mec_img, mecat_img]
 ## ------------
 
 # ----- Inicia estruturas de dados
@@ -92,14 +89,14 @@ class Logos(pygame.sprite.Sprite):
         
         self.image = img
         self.rect = self.image.get_rect()
-        self.rect.x = random.randint(50, LARGURA-50) #as 'frutinhas' não são lançadas no canto
-        self.rect.y = 600 #as 'frutinhas' são lançadas de baixo
+        self.rect.x = random.randint(150, 750) #as 'frutinhas' não são lançadas no canto
+        self.rect.y = 600-ALTURA_OBJ #as 'frutinhas' são lançadas de baixo
         
         #a velocidade tem que mudar de sentido em algum momento 
         #no eixo x a velocidade inicial pode ser positiva ou negativa, mas não quero velocidades tõ diferentes 
-        self.speedx = random.randint(-1, 1)
+        self.speedx = random.randint(-2, 2)
         #no eixo y eu quero que as velocidades não sejam tão diferentes
-        self.speedy = random.randint(-5, -3)
+        self.speedy = random.randint(-15, -10)
         
     def update(self):
         #vai atualizar a velocidade
@@ -118,14 +115,14 @@ class Bombas(pygame.sprite.Sprite):
         
         self.image = img
         self.rect = self.image.get_rect()
-        self.rect.x = random.randint(50, LARGURA-50) #as bombas não são lançadas no canto
-        self.rect.y = 600 #as bombas são lançadas de baixo
+        self.rect.x = random.randint(150, 750) #as bombas não são lançadas no canto
+        self.rect.y = 600-ALTURA_OBJ #as bombas são lançadas de baixo
                 
         #a velocidade tem que mudar de sentido em algum momento 
         #no eixo x a velocidade inicial pode ser positiva ou negativa, mas não quero velocidades tõ diferentes 
-        self.speedx = random.randint(-1, 1)
+        self.speedx = random.randint(-2, 2)
         #no eixo y eu quero que as velocidades não sejam tão diferentes
-        self.speedy = random.randint(-5, -3)
+        self.speedy = random.randint(-15, -10)
         
     def update(self):
         #vai atualizar a velocidade
@@ -154,11 +151,12 @@ todas_logos = pygame.sprite.Group()
 for i in range(n_logos):
     imagem = random.randint(0, 6)
     fruta = Logos(lista_logos[imagem])
-    
+    todas_logos.add(fruta)
+
     
 # Variável para o ajuste de velocidade
 clock = pygame.time.Clock()
-FPS = 30
+FPS = 40
 
 
 game = True
@@ -174,17 +172,26 @@ while game:
         # ----- Verifica consequências
         if event.type == pygame.QUIT:
             game = False
-        if event.type == pygame.KEYUP:
-            game = False
+        # if event.type == pygame.KEYUP:
+        #     game = False
             
     # ----- Gera saídas
-    janela.fill(PRETO)  # Preenche com a cor preta
-    janela.blit(backgroung, (0,0)) #A - coloquei o fundo na janela
+    #janela.fill(BRANCO)
+    janela.blit(background, (0,0)) #A - coloquei o fundo na janela
+    
 
     # ----- Atualiza estado do jogo
     pygame.display.update()  # Mostra o novo frame para o jogador
     todas_bombas.update()
     todas_logos.update()
+    
+    #------- Desenha bombas e logos
+    todas_bombas.draw(janela)
+    todas_logos.draw(janela)
+    
+    pygame.display.update()  # Mostra o novo frame para o jogador
+    
+
 
 # ===== Finalização =====
 pygame.quit()  # Função do PyGame que finaliza os recursos utilizados
