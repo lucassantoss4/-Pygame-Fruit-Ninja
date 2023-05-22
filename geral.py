@@ -1,3 +1,4 @@
+import pygame
 ### CORES
 
 PRETO = (24, 24, 24)
@@ -12,3 +13,10 @@ ROXO = (169, 85, 255)
 
 LARGURA = 480
 ALTURA = 600
+
+LARGURA_OBJ = 15
+ALTURA_OBJ = 15
+
+### IMAGENS
+bomba_img = pygame.image.load('util/img/BOMBA.png').convert_alpha()
+bomba_img = pygame.transform.scale(bomba_img, (ALTURA_OBJ, LARGURA_OBJ))
