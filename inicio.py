@@ -1,18 +1,26 @@
 # ===== Inicialização =====
+
+'''
+Legendas de atualização <3
+A <3
+G <3
+L <3
+'''
+
 # ----- Importa e inicia pacotes
 import pygame
 import random
+from geral import PRETO, BRANCO, VERMELHO, AMARELO, VERDE, AZUL, ROXO, LARGURA, ALTURA
+    #A- criei o arquivo geral.py pra guardar coisas que podemos usar frequentemente
 
 pygame.init()
 
 # ----- Gera tela principal
-LARGURA = 480
-ALTURA = 600
 
 janela = pygame.display.set_mode((LARGURA, ALTURA))
 
-backgroung = pygame.image.load('util/img/background.png').convert()
-backgroung = pygame.transform.scale(backgroung, (LARGURA, ALTURA))
+backgroung = pygame.image.load('util/img/background.png').convert() #A- denominei o fundo como background
+backgroung = pygame.transform.scale(backgroung, (LARGURA, ALTURA)) #A- escala
 
 #######gabi começou a mexer aqui
 pygame.display.set_caption('Fruit Ninja')
@@ -31,8 +39,8 @@ while game:
             game = False
 
     # ----- Gera saídas
-    janela.fill((0, 0, 0))  # Preenche com a cor preta
-    janela.blit(backgroung, (0,0))
+    janela.fill(PRETO)  # Preenche com a cor preta
+    janela.blit(backgroung, (0,0)) #A - coloquei o fundo na janela
 
     # ----- Atualiza estado do jogo
     pygame.display.update()  # Mostra o novo frame para o jogador
