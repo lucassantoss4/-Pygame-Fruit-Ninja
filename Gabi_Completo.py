@@ -52,7 +52,6 @@ bomba_img = pygame.transform.scale(bomba_img, (ALTURA_OBJ, LARGURA_OBJ))
 faca_img = pygame.image.load('util/img/FACA.png').convert_alpha()
 faca_img = pygame.transform.scale(faca_img, (ALTURA_OBJ, LARGURA_OBJ))
 
-
 adm_img = pygame.image.load('util/img/ADM.png').convert_alpha()
 adm_img = pygame.transform.scale(adm_img, (ALTURA_OBJ, LARGURA_OBJ))
 
