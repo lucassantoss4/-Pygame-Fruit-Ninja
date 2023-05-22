@@ -18,8 +18,6 @@ pygame.init()
 
 # pontuação
 pontuação = 0
-frutas = ["Laranja", "Melancia"]
-
 
 
 # ----- Gera tela principal
@@ -29,7 +27,6 @@ janela = pygame.display.set_mode((LARGURA, ALTURA))
 janela.fill(BRANCO)
 fonte = pygame.font.SysFont('Comic Sans MS', 30)
 texto = fonte.render('Fruit Ninja', True, PRETO, BRANCO)
-
 backgroung = pygame.image.load('util/img/background.png').convert() #A- denominei o fundo como background
 backgroung = pygame.transform.scale(backgroung, (LARGURA, ALTURA)) #A- escala
 pygame.display.set_caption('Fruit Ninja')
@@ -39,6 +36,7 @@ game = True
 
 # ===== Loop principal =====
 while game:
+    
     # ----- Trata eventos
     for event in pygame.event.get():
         # ----- Verifica consequências
