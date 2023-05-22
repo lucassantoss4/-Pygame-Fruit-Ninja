@@ -11,6 +11,9 @@ ALTURA = 600
 
 janela = pygame.display.set_mode((LARGURA, ALTURA))
 
+backgroung = pygame.image.load('util/img/background.png').convert()
+backgroung = pygame.transform.scale(backgroung, (LARGURA, ALTURA))
+
 #######gabi começou a mexer aqui
 pygame.display.set_caption('Fruit Ninja')
 
@@ -29,6 +32,7 @@ while game:
 
     # ----- Gera saídas
     janela.fill((0, 0, 0))  # Preenche com a cor preta
+    janela.blit(backgroung, (0,0))
 
     # ----- Atualiza estado do jogo
     pygame.display.update()  # Mostra o novo frame para o jogador
