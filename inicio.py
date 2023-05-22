@@ -56,3 +56,9 @@ while game:
 
 # ===== Finalização =====
 pygame.quit()  # Função do PyGame que finaliza os recursos utilizados
+
+##A- Cria grupos
+todas_bombas = pygame.sprite.Group
+for i in range(15):
+    bomba = Bombas()
+    #all_meteors.add(meteor)
