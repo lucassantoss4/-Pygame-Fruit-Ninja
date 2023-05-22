@@ -44,3 +44,5 @@ mec_img = pygame.transform.scale(mec_img, (ALTURA_OBJ, LARGURA_OBJ))
 
 mecat_img = pygame.image.load('util/img/MECAT.png').convert_alpha()
 mecat_img = pygame.transform.scale(mecat_img, (ALTURA_OBJ, LARGURA_OBJ))
+
+lista_logos = [adm_img, ccomp_img, direito_img, ecomp_img, econo_img, faca_img, mec_img, mecat_img]
