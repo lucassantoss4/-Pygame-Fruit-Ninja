@@ -13,11 +13,22 @@ import random
 from geral import PRETO, BRANCO, VERMELHO, AMARELO, VERDE, AZUL, ROXO, LARGURA, ALTURA
     #A- criei o arquivo geral.py pra guardar coisas que podemos usar frequentemente
 
+
 pygame.init()
+
+# pontuação
+pontuação = 0
+frutas = ["Laranja", "Melancia"]
+
+
 
 # ----- Gera tela principal
 
+# configurações da tela e fonte do jogo
 janela = pygame.display.set_mode((LARGURA, ALTURA))
+janela.fill(BRANCO)
+fonte = pygame.font.SysFont('Comic Sans MS', 30)
+texto = fonte.render('Fruit Ninja', True, PRETO, BRANCO)
 
 backgroung = pygame.image.load('util/img/background.png').convert() #A- denominei o fundo como background
 backgroung = pygame.transform.scale(backgroung, (LARGURA, ALTURA)) #A- escala
