@@ -36,8 +36,7 @@ ecomp_img = pygame.transform.scale(ecomp_img, (ALTURA_OBJ, LARGURA_OBJ))
 econo_img = pygame.image.load('util/img/ECONO.png').convert_alpha()
 econo_img = pygame.transform.scale(econo_img, (ALTURA_OBJ, LARGURA_OBJ))
 
-faca_img = pygame.image.load('util/img/FACA.png').convert_alpha()
-faca_img = pygame.transform.scale(faca_img, (ALTURA_OBJ, LARGURA_OBJ))
+
 
 mec_img = pygame.image.load('util/img/MEC.png').convert_alpha()
 mec_img = pygame.transform.scale(mec_img, (ALTURA_OBJ, LARGURA_OBJ))

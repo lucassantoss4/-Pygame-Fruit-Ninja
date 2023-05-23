@@ -10,6 +10,7 @@ L <3
 # ----- Importa e inicia pacotes
 import pygame
 import random
+import time
 
 pygame.init()
 
@@ -31,18 +32,18 @@ ROXO = (169, 85, 255)
 LARGURA = 900
 ALTURA = 600
 
-LARGURA_OBJ = 50
-ALTURA_OBJ = 50
+LARGURA_OBJ = 70
+ALTURA_OBJ = 70
 
 # configurações da tela e fonte do jogo
 janela = pygame.display.set_mode((LARGURA, ALTURA))
 janela.fill(BRANCO)
 fonte = pygame.font.SysFont('Comic Sans MS', 30)
-texto = fonte.render('Fruit Ninja', True, PRETO, BRANCO)
+texto = fonte.render('Cursos Ninja', True, PRETO, BRANCO)
 
 background = pygame.image.load('util/img/background.png').convert() #A- denominei o fundo como background
 background = pygame.transform.scale(background, (LARGURA, ALTURA)) #A- escala
-pygame.display.set_caption('Fruit Ninja')
+pygame.display.set_caption('Cursos Ninja')
 
 ### IMAGENS
 
@@ -74,6 +75,8 @@ mecat_img = pygame.image.load('util/img/MECAT.png').convert_alpha()
 mecat_img = pygame.transform.scale(mecat_img, (ALTURA_OBJ, LARGURA_OBJ))
 
 lista_logos = [adm_img, ccomp_img, direito_img, ecomp_img, econo_img, mec_img, mecat_img]
+
+
 ## ------------
 
 # ----- Inicia estruturas de dados
@@ -104,7 +107,7 @@ class Logos(pygame.sprite.Sprite):
         #vai atualizar a posição
         self.rect.x += self.speedx
         self.rect.y += self.speedy
-            
+                   
         
 #usar a mesma lógica para construir a série de bombas
 class Bombas(pygame.sprite.Sprite):
@@ -131,31 +134,41 @@ class Bombas(pygame.sprite.Sprite):
         self.rect.x += self.speedx
         self.rect.y += self.speedy
         
-    
-#quantidade de logos lançadas
-n_logos = random.randint(0, 6)
-
-#quantidade de bombas lançadas
-n_bombas = random.randint(0, 2)   
 
 ##A- Cria grupos
 todas_bombas = pygame.sprite.Group()
+todas_logos = pygame.sprite.Group()
+
+#adiciona elementos nos grupos
+    #sorteia a quantidade de elementos de cada
+n_logos = random.randint(0, 6)
+n_bombas = random.randint(0, 2)  
 
 for i in range(n_bombas):
     bomba = Bombas(bomba_img)
     todas_bombas.add(bomba)
-    
-##G- Cria grupo de logos
-todas_logos = pygame.sprite.Group()
+
 for i in range(n_logos):
     imagem = random.randint(0, 6)
     fruta = Logos(lista_logos[imagem])
     todas_logos.add(fruta)
+    
+    
+#------- mouse
 
+pygame.mouse.set_visible(False)
+faca_img_rect = faca_img.get_rect()
+
+
+#------------ Jogo -----------#
     
 # Variável para o ajuste de velocidade
 clock = pygame.time.Clock()
-FPS = 45
+FPS = 60
+
+#variáveis do jogo
+Score = 0
+vida = 3
 
 game = True
 
@@ -164,23 +177,72 @@ while game:
     #definindo tempo para execução do loop
     clock.tick(FPS)
     
-    
     # ----- Trata eventos
     for event in pygame.event.get():
         # ----- Verifica consequências
         if event.type == pygame.QUIT:
             game = False
-        # if event.type == pygame.KEYUP:
-        #     game = False
             
+    if vida == 0:
+        game = False
+            
+    #obtem a posição do mouse para cortar as frutas  
+    mouse_x, mouse_y = pygame.mouse.get_pos()
+    
+    
+    #--------- trata das logos e bombas
+    for logo in todas_logos:
+        if logo.rect.x < mouse_x < (logo.rect.x + LARGURA_OBJ) and logo.rect.y < mouse_y < (logo.rect.y + ALTURA_OBJ):
+            logo.kill()
+            Score += 100
+        if logo.rect.x > LARGURA or logo.rect.x - LARGURA_OBJ < 0:
+            logo.kill()
+        if logo.rect.y > ALTURA:
+            logo.kill()
+    
+    for bomba in todas_bombas:
+        if bomba.rect.x < mouse_x < (bomba.rect.x + LARGURA_OBJ) and bomba.rect.y < mouse_y < (bomba.rect.y + ALTURA_OBJ):
+            bomba.kill()
+            vida -= 1
+        if bomba.rect.x > LARGURA or bomba.rect.x - LARGURA_OBJ < 0:
+            bomba.kill()
+        if bomba.rect.y > ALTURA:
+            bomba.kill()
+            
+        
+    if len(todas_bombas) == 0 and len(todas_logos) == 0:
+        #adiciona elementos nos grupos
+            #sorteia a quantidade de elementos de cada
+        n_logos = random.randint(0, 6)
+        n_bombas = random.randint(0, 2)  
+        
+        for i in range(n_bombas):
+            bomba = Bombas(bomba_img)
+            todas_bombas.add(bomba)
+
+        for i in range(n_logos):
+            imagem = random.randint(0, 6)
+            fruta = Logos(lista_logos[imagem])
+            todas_logos.add(fruta)        
+
+        
     # ----- Atualiza estado do jogo
-    pygame.display.update()  # Mostra o novo frame para o jogador
+   
     todas_bombas.update()
     todas_logos.update()        
             
     # ----- Gera saídas
     
+    fonte_score = pygame.font.SysFont('Comic Sans MS', 40)
+    texto_score = fonte_score.render('Score {0}'.format(Score), True, PRETO)
+    fonte_vida = pygame.font.SysFont('Comic Sans MS', 40)
+    texto_vidas = fonte_vida.render('Vidas {0}'.format(vida), True, PRETO)
+    
     janela.blit(background, (0,0)) #A - coloquei o fundo na janela
+    janela.blit(texto_score, (100, 5))
+    janela.blit(texto_vidas, (700,5))
+    faca_img_rect.center = pygame.mouse.get_pos()  
+    janela.blit(faca_img, faca_img_rect) 
     
     #------- Desenha bombas e logos
     todas_bombas.draw(janela)
@@ -188,9 +250,19 @@ while game:
     
     pygame.display.update()  # Mostra o novo frame para o jogador
     
-
-
+    
 # ===== Finalização =====
 pygame.quit()  # Função do PyGame que finaliza os recursos utilizados
 
+"""
+queria dar um tempinho até que as coisas sejam lançadas de novo   
 
+as frutas não precisam ser lançadas todas ao mesmo tempo, pode ter um 
+intervalo de lançameto entre elas, teria como fazer isso?  
+
+
+fazer o efeito de corte das frutas
+colocar som no corte e no jogo
+
+
+"""

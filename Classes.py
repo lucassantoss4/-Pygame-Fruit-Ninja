@@ -52,8 +52,6 @@ class Bombas(pygame.sprite.Sprite):
         #vai atualizar a posição
         self.rect.x += self.speedx
         self.rect.y += self.speedy
-        
-    
  
 #quantidade de frutas lançadas
 n_frutas = random.randint(0, 6)
@@ -61,22 +59,5 @@ n_frutas = random.randint(0, 6)
 #quantidade de bombas lançadas
 n_bombas = random.randint(0, 2)      
     
-
-
 ### problemas/coias que a gabi pensou
 
-"""
-        
-Falta fazer o update de cada classe
-não sei como imitar o efeito de queda livre (fazer a fruta desacelerar)
-
-eu quero que as frutas sejam lançadas de novo 
-somente quando todas as outras frutas (lançadas anteriormente) 
-tiverem saído da tela      
-
-as frutas não precisam ser lançadas todas ao mesmo tempo, pode ter um 
-intervalo de lançameto entre elas, teria como fazer isso?  
-
-Mudar o cursor do mouse pra uma faca
-
-"""
