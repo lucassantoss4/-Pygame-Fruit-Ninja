@@ -224,7 +224,7 @@ while game:
             game = False
             
     if vida == 0:
-        game_over_screen = GameOverScreen(LARGURA, ALTURA, 3)  # Tempo máximo de 5 segundos
+        game_over_screen = GameOverScreen(LARGURA, ALTURA, 1)  # escreve "Game Over" por 3 segundos e encessa o jogo
         game_over_screen.run()
         game = False
             
