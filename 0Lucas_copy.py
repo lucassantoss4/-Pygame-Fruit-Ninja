@@ -11,11 +11,14 @@ L <3
 import pygame
 import random
 import time
+import sys
 
 pygame.init()
 pygame.mixer.init() # inicializa os sons
 
 # ------- Gera tela principal
+
+PAUSE = 5000
 
 ### ------------
 ### CORES
@@ -138,6 +141,38 @@ class Bombas(pygame.sprite.Sprite):
         self.rect.x += self.speedx
         self.rect.y += self.speedy
         
+#-----------------Classes Da Tela -----------------#
+class GameOverScreen:
+    def __init__(self, LARGURA, ALTURA, tempo_maximo):
+        pygame.init()
+        self.LARGURA = LARGURA
+        self.ALTURA = ALTURA
+        self.tempo_maximo = tempo_maximo
+        self.tempo_inicial = time.time()
+        self.screen = pygame.display.set_mode((self.LARGURA, self.ALTURA))
+        pygame.display.set_caption('Game Over')
+        self.font = pygame.font.SysFont('Comic Sans MS', 48)
+        self.text = self.font.render('Game Over', True, (255, 0, 0))
+        self.text_rect = self.text.get_rect(center=(self.LARGURA // 2, self.ALTURA // 2))
+
+    def run(self):
+        while True:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+
+            self.screen.fill((0, 0, 0))
+            self.screen.blit(self.text, self.text_rect)
+            pygame.display.flip()
+
+            # Verificar se o tempo máximo foi atingido
+            tempo_atual = time.time()
+            tempo_decorrido = tempo_atual - self.tempo_inicial
+            if tempo_decorrido >= self.tempo_maximo:
+                pygame.quit()
+                sys.exit()
+
 
 ##A- Cria grupos
 todas_bombas = pygame.sprite.Group()
@@ -189,6 +224,8 @@ while game:
             game = False
             
     if vida == 0:
+        game_over_screen = GameOverScreen(LARGURA, ALTURA, 3)  # Tempo máximo de 5 segundos
+        game_over_screen.run()
         game = False
             
     #obtem a posição do mouse para cortar as frutas  
