@@ -50,6 +50,8 @@ background = pygame.transform.scale(background, (LARGURA, ALTURA)) #A- escala
 pygame.display.set_caption('Cursos Ninja')
 
 ### IMAGENS
+machado_img = pygame.image.load('util/img/MACHADO.png').convert_alpha()
+machado_img = pygame.transform.scale(machado_img, (ALTURA_OBJ, LARGURA_OBJ))
 
 bomba_img = pygame.image.load('util/img/BOMBA.png').convert_alpha()
 bomba_img = pygame.transform.scale(bomba_img, (ALTURA_OBJ, LARGURA_OBJ))
@@ -141,7 +143,7 @@ class Bombas(pygame.sprite.Sprite):
         self.rect.x += self.speedx
         self.rect.y += self.speedy
         
-#-----------------Classes Da Tela -----------------#
+#-----------------Classe Da Tela -----------------#
 class GameOverScreen:
     def __init__(self, LARGURA, ALTURA, tempo_maximo):
         pygame.init()
@@ -196,7 +198,8 @@ for i in range(n_logos):
 #------- mouse
 
 pygame.mouse.set_visible(False)
-faca_img_rect = faca_img.get_rect()
+# faca_img_rect = faca_img.get_rect()
+machado_img_rect = machado_img.get_rect()
 
 
 #------------ Jogo -----------#
@@ -224,7 +227,7 @@ while game:
             game = False
             
     if vida == 0:
-        game_over_screen = GameOverScreen(LARGURA, ALTURA, 1)  # escreve "Game Over" por 3 segundos e encessa o jogo
+        game_over_screen = GameOverScreen(LARGURA, ALTURA, 1)  # escreve "Game Over" por # segundos e encessa o jogo
         game_over_screen.run()
         game = False
             
@@ -283,9 +286,10 @@ while game:
     janela.blit(background, (0,0)) #A - coloquei o fundo na janela
     janela.blit(texto_score, (100, 5))
     janela.blit(texto_vidas, (700,5))
-    faca_img_rect.center = pygame.mouse.get_pos()  
-    janela.blit(faca_img, faca_img_rect) 
-    
+    # faca_img_rect.center = pygame.mouse.get_pos()
+    machado_img_rect.center = pygame.mouse.get_pos()  
+    # janela.blit(faca_img, faca_img_rect) 
+    janela.blit(machado_img, machado_img_rect)
     #------- Desenha bombas e logos
     todas_bombas.draw(janela)
     todas_logos.draw(janela)
