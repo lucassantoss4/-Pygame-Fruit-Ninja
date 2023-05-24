@@ -11,10 +11,14 @@ L <3
 import pygame
 import random
 import time
+import sys
 
 pygame.init()
+pygame.mixer.init() # inicializa os sons
 
 # ------- Gera tela principal
+
+PAUSE = 5000
 
 ### ------------
 ### CORES
@@ -46,6 +50,8 @@ background = pygame.transform.scale(background, (LARGURA, ALTURA)) #A- escala
 pygame.display.set_caption('Cursos Ninja')
 
 ### IMAGENS
+machado_img = pygame.image.load('util/img/MACHADO.png').convert_alpha()
+machado_img = pygame.transform.scale(machado_img, (ALTURA_OBJ, LARGURA_OBJ))
 
 bomba_img = pygame.image.load('util/img/BOMBA.png').convert_alpha()
 bomba_img = pygame.transform.scale(bomba_img, (ALTURA_OBJ, LARGURA_OBJ))
@@ -77,7 +83,10 @@ mecat_img = pygame.transform.scale(mecat_img, (ALTURA_OBJ, LARGURA_OBJ))
 lista_logos = [adm_img, ccomp_img, direito_img, ecomp_img, econo_img, mec_img, mecat_img]
 
 
-## ------------
+## -----SONS-------
+
+pygame.mixer.music.load('util/sons/FRUIT-NINJA-fundo.mp3')
+pygame.mixer.music.set_volume(0.4)
 
 # ----- Inicia estruturas de dados
 
@@ -134,6 +143,38 @@ class Bombas(pygame.sprite.Sprite):
         self.rect.x += self.speedx
         self.rect.y += self.speedy
         
+#-----------------Classe Da Tela -----------------#
+class GameOverScreen:
+    def __init__(self, LARGURA, ALTURA, tempo_maximo):
+        pygame.init()
+        self.LARGURA = LARGURA
+        self.ALTURA = ALTURA
+        self.tempo_maximo = tempo_maximo
+        self.tempo_inicial = time.time()
+        self.screen = pygame.display.set_mode((self.LARGURA, self.ALTURA))
+        pygame.display.set_caption('Game Over')
+        self.font = pygame.font.SysFont('Comic Sans MS', 48)
+        self.text = self.font.render('Game Over', True, (255, 0, 0))
+        self.text_rect = self.text.get_rect(center=(self.LARGURA // 2, self.ALTURA // 2))
+
+    def run(self):
+        while True:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+
+            self.screen.fill((0, 0, 0))
+            self.screen.blit(self.text, self.text_rect)
+            pygame.display.flip()
+
+            # Verificar se o tempo máximo foi atingido
+            tempo_atual = time.time()
+            tempo_decorrido = tempo_atual - self.tempo_inicial
+            if tempo_decorrido >= self.tempo_maximo:
+                pygame.quit()
+                sys.exit()
+
 
 ##A- Cria grupos
 todas_bombas = pygame.sprite.Group()
@@ -157,7 +198,8 @@ for i in range(n_logos):
 #------- mouse
 
 pygame.mouse.set_visible(False)
-faca_img_rect = faca_img.get_rect()
+# faca_img_rect = faca_img.get_rect()
+machado_img_rect = machado_img.get_rect()
 
 
 #------------ Jogo -----------#
@@ -173,6 +215,7 @@ vida = 3
 game = True
 
 # ===== Loop principal =====
+pygame.mixer.music.play(loops=-1) #para tocar a música de fundo em loop
 while game:
     #definindo tempo para execução do loop
     clock.tick(FPS)
@@ -184,6 +227,8 @@ while game:
             game = False
             
     if vida == 0:
+        game_over_screen = GameOverScreen(LARGURA, ALTURA, 1)  # escreve "Game Over" por # segundos e encessa o jogo
+        game_over_screen.run()
         game = False
             
     #obtem a posição do mouse para cortar as frutas  
@@ -241,9 +286,10 @@ while game:
     janela.blit(background, (0,0)) #A - coloquei o fundo na janela
     janela.blit(texto_score, (100, 5))
     janela.blit(texto_vidas, (700,5))
-    faca_img_rect.center = pygame.mouse.get_pos()  
-    janela.blit(faca_img, faca_img_rect) 
-    
+    # faca_img_rect.center = pygame.mouse.get_pos()
+    machado_img_rect.center = pygame.mouse.get_pos()  
+    # janela.blit(faca_img, faca_img_rect) 
+    janela.blit(machado_img, machado_img_rect)
     #------- Desenha bombas e logos
     todas_bombas.draw(janela)
     todas_logos.draw(janela)
@@ -266,3 +312,5 @@ colocar som no corte e no jogo
 
 
 """
+
+##### Sons 
