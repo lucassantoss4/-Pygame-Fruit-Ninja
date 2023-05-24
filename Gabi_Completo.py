@@ -45,7 +45,7 @@ janela.fill(BRANCO)
 fonte = pygame.font.SysFont('Comic Sans MS', 30)
 texto = fonte.render('Cursos Ninja', True, PRETO, BRANCO)
 
-background = pygame.image.load('util/img/background.png').convert() #A- denominei o fundo como background
+background = pygame.image.load('util/img/background_inteiro.png').convert() #A- denominei o fundo como background
 background = pygame.transform.scale(background, (LARGURA, ALTURA)) #A- escala
 pygame.display.set_caption('Cursos Ninja')
 
