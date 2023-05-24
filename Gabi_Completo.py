@@ -36,8 +36,8 @@ ROXO = (169, 85, 255)
 LARGURA = 900
 ALTURA = 600
 
-LARGURA_OBJ = 70
-ALTURA_OBJ = 70
+ALTURA_OBJ = 60
+LARGURA_OBJ = 60
 
 # configurações da tela e fonte do jogo
 janela = pygame.display.set_mode((LARGURA, ALTURA))
@@ -51,34 +51,34 @@ pygame.display.set_caption('Cursos Ninja')
 
 ### IMAGENS
 machado_img = pygame.image.load('util/img/MACHADO.png').convert_alpha()
-machado_img = pygame.transform.scale(machado_img, (ALTURA_OBJ, LARGURA_OBJ))
+machado_img = pygame.transform.scale(machado_img, (LARGURA_OBJ+10, ALTURA_OBJ+10))
 
 bomba_img = pygame.image.load('util/img/BOMBA.png').convert_alpha()
-bomba_img = pygame.transform.scale(bomba_img, (ALTURA_OBJ, LARGURA_OBJ))
+bomba_img = pygame.transform.scale(bomba_img, (LARGURA_OBJ-5, ALTURA_OBJ-5))
 
 faca_img = pygame.image.load('util/img/FACA.png').convert_alpha()
-faca_img = pygame.transform.scale(faca_img, (ALTURA_OBJ, LARGURA_OBJ))
+faca_img = pygame.transform.scale(faca_img, (LARGURA_OBJ, ALTURA_OBJ))
 
 adm_img = pygame.image.load('util/img/ADM.png').convert_alpha()
-adm_img = pygame.transform.scale(adm_img, (ALTURA_OBJ, LARGURA_OBJ))
+adm_img = pygame.transform.scale(adm_img, (LARGURA_OBJ, ALTURA_OBJ))
 
 ccomp_img = pygame.image.load('util/img/CCOMP.png').convert_alpha()
-ccomp_img = pygame.transform.scale(ccomp_img, (ALTURA_OBJ, LARGURA_OBJ))
+ccomp_img = pygame.transform.scale(ccomp_img, (LARGURA_OBJ-5, ALTURA_OBJ-5))
 
 direito_img = pygame.image.load('util/img/DIREITO.png').convert_alpha()
-direito_img = pygame.transform.scale(direito_img, (ALTURA_OBJ, LARGURA_OBJ))
+direito_img = pygame.transform.scale(direito_img, (LARGURA_OBJ+10, ALTURA_OBJ))
 
 ecomp_img = pygame.image.load('util/img/ECOMP.png').convert_alpha()
-ecomp_img = pygame.transform.scale(ecomp_img, (ALTURA_OBJ, LARGURA_OBJ))
+ecomp_img = pygame.transform.scale(ecomp_img, (LARGURA_OBJ-10, ALTURA_OBJ+10))
 
 econo_img = pygame.image.load('util/img/ECONO.png').convert_alpha()
-econo_img = pygame.transform.scale(econo_img, (ALTURA_OBJ, LARGURA_OBJ))
+econo_img = pygame.transform.scale(econo_img, (LARGURA_OBJ+7, ALTURA_OBJ+7))
 
 mec_img = pygame.image.load('util/img/MEC.png').convert_alpha()
-mec_img = pygame.transform.scale(mec_img, (ALTURA_OBJ, LARGURA_OBJ))
+mec_img = pygame.transform.scale(mec_img, (LARGURA_OBJ, ALTURA_OBJ))
 
 mecat_img = pygame.image.load('util/img/MECAT.png').convert_alpha()
-mecat_img = pygame.transform.scale(mecat_img, (ALTURA_OBJ, LARGURA_OBJ))
+mecat_img = pygame.transform.scale(mecat_img, (LARGURA_OBJ, ALTURA_OBJ))
 
 lista_logos = [adm_img, ccomp_img, direito_img, ecomp_img, econo_img, mec_img, mecat_img]
 
@@ -101,7 +101,7 @@ class Logos(pygame.sprite.Sprite):
         self.image = img
         self.rect = self.image.get_rect()
         self.rect.x = random.randint(150, 750) #as 'frutinhas' não são lançadas no canto
-        self.rect.y = 600-ALTURA_OBJ #as 'frutinhas' são lançadas de baixo
+        self.rect.y = 600-LARGURA_OBJ #as 'frutinhas' são lançadas de baixo
         
         #a velocidade tem que mudar de sentido em algum momento 
         #no eixo x a velocidade inicial pode ser positiva ou negativa, mas não quero velocidades tõ diferentes 
@@ -127,7 +127,7 @@ class Bombas(pygame.sprite.Sprite):
         self.image = img
         self.rect = self.image.get_rect()
         self.rect.x = random.randint(150, 750) #as bombas não são lançadas no canto
-        self.rect.y = 600-ALTURA_OBJ #as bombas são lançadas de baixo
+        self.rect.y = 600-LARGURA_OBJ #as bombas são lançadas de baixo
                 
         #a velocidade tem que mudar de sentido em algum momento 
         #no eixo x a velocidade inicial pode ser positiva ou negativa, mas não quero velocidades tõ diferentes 
@@ -237,19 +237,19 @@ while game:
     
     #--------- trata das logos e bombas
     for logo in todas_logos:
-        if logo.rect.x < mouse_x < (logo.rect.x + LARGURA_OBJ) and logo.rect.y < mouse_y < (logo.rect.y + ALTURA_OBJ):
+        if logo.rect.x < mouse_x < (logo.rect.x + ALTURA_OBJ) and logo.rect.y < mouse_y < (logo.rect.y + LARGURA_OBJ):
             logo.kill()
             Score += 100
-        if logo.rect.x > LARGURA or logo.rect.x - LARGURA_OBJ < 0:
+        if logo.rect.x > LARGURA or logo.rect.x - ALTURA_OBJ < 0:
             logo.kill()
         if logo.rect.y > ALTURA:
             logo.kill()
     
     for bomba in todas_bombas:
-        if bomba.rect.x < mouse_x < (bomba.rect.x + LARGURA_OBJ) and bomba.rect.y < mouse_y < (bomba.rect.y + ALTURA_OBJ):
+        if bomba.rect.x < mouse_x < (bomba.rect.x + ALTURA_OBJ) and bomba.rect.y < mouse_y < (bomba.rect.y + LARGURA_OBJ):
             bomba.kill()
             vida -= 1
-        if bomba.rect.x > LARGURA or bomba.rect.x - LARGURA_OBJ < 0:
+        if bomba.rect.x > LARGURA or bomba.rect.x - ALTURA_OBJ < 0:
             bomba.kill()
         if bomba.rect.y > ALTURA:
             bomba.kill()
