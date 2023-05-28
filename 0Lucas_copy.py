@@ -155,7 +155,7 @@ class GameOverScreen:
         pygame.display.set_caption('Game Over')
         self.font = pygame.font.Font("util/fonte/upheavtt.ttf", 60)
         self.text = self.font.render('Game Over', True, (200, 0, 0))
-        self.text_rect = self.text.get_rect(center=(self.LARGURA // 2, self.ALTURA // 2 - 10))
+        self.text_rect = self.text.get_rect(center=(self.LARGURA // 2, self.ALTURA // 2 - 10)) 
 
     def run(self):
         while True:
