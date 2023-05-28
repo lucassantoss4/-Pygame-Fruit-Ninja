@@ -15,7 +15,6 @@ import sys
 
 pygame.init()
 pygame.mixer.init() # inicializa os sons
-pygame.font.init()
 
 # ------- Gera tela principal
 
@@ -46,7 +45,7 @@ janela.fill(BRANCO)
 fonte = pygame.font.Font("util/fonte/upheavtt.ttf", 48)
 texto = fonte.render('Cursos Ninja', True, PRETO, BRANCO)
 
-background = pygame.image.load('util/img/background.png').convert() #A- denominei o fundo como background
+background = pygame.image.load('util/img/background_inteiro.png').convert() #A- denominei o fundo como background
 background = pygame.transform.scale(background, (LARGURA, ALTURA)) #A- escala
 pygame.display.set_caption('Cursos Ninja')
 
@@ -146,35 +145,44 @@ class Bombas(pygame.sprite.Sprite):
         
 #-----------------Classe Da Tela -----------------#
 class GameOverScreen:
-    def __init__(self, LARGURA, ALTURA, tempo_maximo):
+    def __init__(self, largura, altura, tempo_maximo):
         pygame.init()
-        self.LARGURA = LARGURA
-        self.ALTURA = ALTURA
+        self.largura = largura
+        self.altura = altura
         self.tempo_maximo = tempo_maximo
         self.tempo_inicial = time.time()
-        self.screen = pygame.display.set_mode((self.LARGURA, self.ALTURA))
+        self.screen = pygame.display.set_mode((self.largura, self.altura))
         pygame.display.set_caption('Game Over')
         self.font = pygame.font.Font("util/fonte/upheavtt.ttf", 60)
         self.text = self.font.render('Game Over', True, (200, 0, 0))
-        self.text_rect = self.text.get_rect(center=(self.LARGURA // 2, self.ALTURA // 2 - 10))
+        self.text_rect = self.text.get_rect(center=(self.largura // 2, self.altura // 2 - 10))
+        self.reiniciar = False
+        self.botao_reiniciar = pygame.Rect(self.largura // 2 - 100, self.altura // 2 + 50, 200, 50)
+        self.botao_reiniciar_texto = pygame.font.Font("util/fonte/upheavtt.ttf", 30).render('Reiniciar', True, (0, 0, 0))
+        self.botao_reiniciar_texto_rect = self.botao_reiniciar_texto.get_rect(center=self.botao_reiniciar.center)
 
     def run(self):
         while True:
+            pygame.mouse.set_visible(True)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
+                if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+                    if self.botao_reiniciar.collidepoint(event.pos):
+                        self.reiniciar = True
 
             self.screen.fill((0, 0, 0))
             self.screen.blit(self.text, self.text_rect)
+            pygame.draw.rect(self.screen, (255, 255, 255), self.botao_reiniciar)
+            self.screen.blit(self.botao_reiniciar_texto, self.botao_reiniciar_texto_rect)
             pygame.display.flip()
 
-            # Verificar se o tempo máximo foi atingido
-            tempo_atual = time.time()
+            '''tempo_atual = time.time()
             tempo_decorrido = tempo_atual - self.tempo_inicial
             if tempo_decorrido >= self.tempo_maximo:
                 pygame.quit()
-                sys.exit()
+                sys.exit()'''
 
 
 ##A- Cria grupos
@@ -225,12 +233,17 @@ while game:
     for event in pygame.event.get():
         # ----- Verifica consequências
         if event.type == pygame.QUIT:
-            game = False
+            pygame.quit()
+            sys.exit()
+        
             
     if vida == 0:
-        game_over_screen = GameOverScreen(LARGURA, ALTURA, 1)  # escreve "Game Over" por # segundos e encessa o jogo
-        game_over_screen.run()
-        game = False
+        game_over_screen = GameOverScreen(LARGURA, ALTURA, 5)  # Ajuste o tempo de exibição se desejar
+        while not game_over_screen.reiniciar:
+            game_over_screen.run()
+
+        Score = 0
+        vida = 3
             
     #obtem a posição do mouse para cortar as frutas  
     mouse_x, mouse_y = pygame.mouse.get_pos()
@@ -284,8 +297,8 @@ while game:
     texto_vidas = fonte_score.render('Vidas {0}'.format(vida), True, PRETO)
     
     janela.blit(background, (0,0)) #A - coloquei o fundo na janela
-    janela.blit(texto_score, (20, 5))
-    janela.blit(texto_vidas, (750,5))
+    janela.blit(texto_score, (100, 5))
+    janela.blit(texto_vidas, (700,5))
     # faca_img_rect.center = pygame.mouse.get_pos()
     machado_img_rect.center = pygame.mouse.get_pos()  
     # janela.blit(faca_img, faca_img_rect) 
