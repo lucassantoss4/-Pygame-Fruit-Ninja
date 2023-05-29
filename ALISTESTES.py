@@ -53,40 +53,125 @@ pygame.display.set_caption('Cursos Ninja')
 machado_img = pygame.image.load('util/img/MACHADO.png').convert_alpha()
 machado_img = pygame.transform.scale(machado_img, (LARGURA_OBJ+10, ALTURA_OBJ+10))
 
-bomba_img = pygame.image.load('util/img/BOMBA.png').convert_alpha()
-bomba_img = pygame.transform.scale(bomba_img, (LARGURA_OBJ-5, ALTURA_OBJ-5))
+'''#logo da bomba
+bomba_1 = pygame.image.load('util/img/BOMBA.png').convert_alpha()
+bomba_1 = pygame.transform.scale(bomba_1, (LARGURA_OBJ-5, ALTURA_OBJ-5))
 
-faca_img = pygame.image.load('util/img/FACA.png').convert_alpha()
-faca_img = pygame.transform.scale(faca_img, (LARGURA_OBJ, ALTURA_OBJ))
+bomba_2 = pygame.image.load('util/img/BOMBA_CORTE.png').convert_alpha()
+bomba_2 = pygame.transform.scale(bomba_2, (LARGURA_OBJ-5, ALTURA_OBJ-5))
 
-adm_img = pygame.image.load('util/img/ADM.png').convert_alpha()
-adm_img = pygame.transform.scale(adm_img, (LARGURA_OBJ, ALTURA_OBJ))
+bomba_3 = pygame.image.load('util/img/BOMBA_MEIO.png').convert_alpha()
+bomba_3 = pygame.transform.scale(bomba_3, (LARGURA_OBJ-5, ALTURA_OBJ-5))
 
-ccomp_img = pygame.image.load('util/img/CCOMP.png').convert_alpha()
-ccomp_img = pygame.transform.scale(ccomp_img, (LARGURA_OBJ-5, ALTURA_OBJ-5))
+#logos dos cursos
+adm_1 = pygame.image.load('util/img/ADM.png').convert_alpha()
+adm_1 = pygame.transform.scale(adm_1, (LARGURA_OBJ, ALTURA_OBJ))
 
-direito_img = pygame.image.load('util/img/DIREITO.png').convert_alpha()
-direito_img = pygame.transform.scale(direito_img, (LARGURA_OBJ+10, ALTURA_OBJ))
+adm_2 = pygame.image.load('util/img/ADM_CORTE.png').convert_alpha()
+adm_2 = pygame.transform.scale(adm_2, (LARGURA_OBJ, ALTURA_OBJ))
 
-ecomp_img = pygame.image.load('util/img/ECOMP.png').convert_alpha()
-ecomp_img = pygame.transform.scale(ecomp_img, (LARGURA_OBJ-10, ALTURA_OBJ+10))
+adm_3 = pygame.image.load('util/img/ADM_MEIO.png').convert_alpha()
+adm_3 = pygame.transform.scale(adm_3, (LARGURA_OBJ, ALTURA_OBJ))
 
-econo_img = pygame.image.load('util/img/ECONO.png').convert_alpha()
-econo_img = pygame.transform.scale(econo_img, (LARGURA_OBJ+7, ALTURA_OBJ+7))
+ccomp_1 = pygame.image.load('util/img/CCOMP.png').convert_alpha()
+ccomp_1 = pygame.transform.scale(ccomp_1, (LARGURA_OBJ-5, ALTURA_OBJ-5))
 
-mec_img = pygame.image.load('util/img/MEC.png').convert_alpha()
-mec_img = pygame.transform.scale(mec_img, (LARGURA_OBJ, ALTURA_OBJ))
+ccomp_2 = pygame.image.load('util/img/CCOMP_CORTE.png').convert_alpha()
+ccomp_2 = pygame.transform.scale(ccomp_2, (LARGURA_OBJ-5, ALTURA_OBJ-5))
 
-mecat_img = pygame.image.load('util/img/MECAT.png').convert_alpha()
-mecat_img = pygame.transform.scale(mecat_img, (LARGURA_OBJ, ALTURA_OBJ))
+ccomp_3 = pygame.image.load('util/img/CCOMP_MEIO.png').convert_alpha()
+ccomp_3 = pygame.transform.scale(ccomp_3, (LARGURA_OBJ-5, ALTURA_OBJ-5))
 
-lista_logos = [adm_img, ccomp_img, direito_img, ecomp_img, econo_img, mec_img, mecat_img]
+direito_1 = pygame.image.load('util/img/DIREITO.png').convert_alpha()
+direito_1 = pygame.transform.scale(direito_1, (LARGURA_OBJ+10, ALTURA_OBJ))
 
+direito_2 = pygame.image.load('util/img/DIREITO_CORTE.png').convert_alpha()
+direito_2 = pygame.transform.scale(direito_2, (LARGURA_OBJ+10, ALTURA_OBJ))
+
+direito_3 = pygame.image.load('util/img/DIREITO_MEIO.png').convert_alpha()
+direito_3 = pygame.transform.scale(direito_3, (LARGURA_OBJ+10, ALTURA_OBJ))
+
+ecomp_1 = pygame.image.load('util/img/ECOMP.png').convert_alpha()
+ecomp_1 = pygame.transform.scale(ecomp_1, (LARGURA_OBJ-10, ALTURA_OBJ+10))
+
+ecomp_2 = pygame.image.load('util/img/ECOMP_CORTE.png').convert_alpha()
+ecomp_2 = pygame.transform.scale(ecomp_2, (LARGURA_OBJ-10, ALTURA_OBJ+10))
+
+ecomp_3 = pygame.image.load('util/img/ECOMP_MEIO.png').convert_alpha()
+ecomp_3 = pygame.transform.scale(ecomp_3, (LARGURA_OBJ-10, ALTURA_OBJ+10))
+
+econo_1 = pygame.image.load('util/img/ECONO.png').convert_alpha()
+econo_1 = pygame.transform.scale(econo_1, (LARGURA_OBJ+7, ALTURA_OBJ+7))
+
+econo_2 = pygame.image.load('util/img/ECONO_CORTE.png').convert_alpha()
+econo_2 = pygame.transform.scale(econo_2, (LARGURA_OBJ+7, ALTURA_OBJ+7))
+
+econo_3 = pygame.image.load('util/img/ECONO_MEIO.png').convert_alpha()
+econo_3 = pygame.transform.scale(econo_3, (LARGURA_OBJ+7, ALTURA_OBJ+7))
+
+mec_1 = pygame.image.load('util/img/MEC.png').convert_alpha()
+mec_1 = pygame.transform.scale(mec_1, (LARGURA_OBJ, ALTURA_OBJ))
+
+mec_2 = pygame.image.load('util/img/MEC_CORTE.png').convert_alpha()
+mec_2 = pygame.transform.scale(mec_2, (LARGURA_OBJ, ALTURA_OBJ))
+
+mec_3 = pygame.image.load('util/img/MEC_MEIO.png').convert_alpha()
+mec_3 = pygame.transform.scale(mec_3, (LARGURA_OBJ, ALTURA_OBJ))
+
+mecat_1 = pygame.image.load('util/img/MECAT.png').convert_alpha()
+mecat_1 = pygame.transform.scale(mecat_1, (LARGURA_OBJ, ALTURA_OBJ))
+
+mecat_2 = pygame.image.load('util/img/MECAT_CORTE.png').convert_alpha()
+mecat_2 = pygame.transform.scale(mecat_2, (LARGURA_OBJ, ALTURA_OBJ))
+
+mecat_3 = pygame.image.load('util/img/MECAT_MEIO.png').convert_alpha()
+mecat_3 = pygame.transform.scale(mecat_3, (LARGURA_OBJ, ALTURA_OBJ))
+
+lista_logos = [adm_1, ccomp_1, direito_1, ecomp_1, econo_1, mec_1, mecat_1]
+lista_cortes = [adm_2, ccomp_2, direito_2, ecomp_2, econo_2, mec_2, mecat_2]
+lista_meio = [adm_3, ccomp_3, direito_3, ecomp_3, econo_3, mec_3, mecat_3]
+'''
 
 ## -----SONS-------
 
 pygame.mixer.music.load('util/sons/FRUIT-NINJA-fundo.mp3')
 pygame.mixer.music.set_volume(0.4)
+
+#hits
+hit_0 = pygame.mixer.music.load('util/hits/hit0.mp3')
+hit_0 = pygame.mixer.music.set_volume(0.4)
+
+hit_1 = pygame.mixer.music.load('util/hits/hit_1.mp3')
+hit_1 = pygame.mixer.music.set_volume(0.4)
+
+hit_2 = pygame.mixer.music.load('util/hits/hit2.mp3')
+hit_2 = pygame.mixer.music.set_volume(0.4)
+
+hit_3 = pygame.mixer.music.load('util/hits/hit3.mp3')
+hit_3 = pygame.mixer.music.set_volume(0.4)
+
+hit_4 = pygame.mixer.music.load('util/hits/hit4.mp3')
+hit_4 = pygame.mixer.music.set_volume(0.4)
+
+hit_5 = pygame.mixer.music.load('util/hits/hit5.mp3')
+hit_5 = pygame.mixer.music.set_volume(0.4)
+
+hit_6 = pygame.mixer.music.load('util/hits/hit6.mp3')
+hit_6 = pygame.mixer.music.set_volume(0.4)
+
+hit_7 = pygame.mixer.music.load('util/hits/hit7.mp3')
+hit_7 = pygame.mixer.music.set_volume(0.4)
+
+hit_8 = pygame.mixer.music.load('util/hits/hit8.mp3')
+hit_8 = pygame.mixer.music.set_volume(0.4)
+
+hit_9 = pygame.mixer.music.load('util/hits/hit9.mp3')
+hit_9 = pygame.mixer.music.set_volume(0.4)
+
+hit_10 = pygame.mixer.music.load('util/hits/hit10.mp3')
+hit_10 = pygame.mixer.music.set_volume(0.4)
+
+lista_hits = [hit_0, hit_1, hit_2, hit_3, hit_4, hit_5, hit_6, hit_7, hit_8, hit_9, hit_10]
 
 # ----- Inicia estruturas de dados
 
@@ -195,7 +280,7 @@ n_logos = random.randint(0, 6)
 n_bombas = random.randint(0, 2)  
 
 for i in range(n_bombas):
-    bomba = Bombas(bomba_img)
+    bomba = Bombas(bomba_1)
     todas_bombas.add(bomba)
 
 for i in range(n_logos):
@@ -252,6 +337,7 @@ while game:
     #--------- trata das logos e bombas
     for logo in todas_logos:
         if logo.rect.x < mouse_x < (logo.rect.x + ALTURA_OBJ) and logo.rect.y < mouse_y < (logo.rect.y + LARGURA_OBJ):
+            pygame.mixer.music.play(loops=-1)
             logo.kill()
             Score += 100
         if logo.rect.x > LARGURA or logo.rect.x - ALTURA_OBJ < 0:
@@ -276,7 +362,7 @@ while game:
         n_bombas = random.randint(0, 2)  
         
         for i in range(n_bombas):
-            bomba = Bombas(bomba_img)
+            bomba = Bombas(bomba_1)
             todas_bombas.add(bomba)
 
         for i in range(n_logos):
