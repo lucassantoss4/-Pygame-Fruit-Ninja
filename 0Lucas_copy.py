@@ -42,7 +42,7 @@ LARGURA_OBJ = 60
 # configurações da tela e fonte do jogo
 janela = pygame.display.set_mode((LARGURA, ALTURA))
 janela.fill(BRANCO)
-fonte = pygame.font.SysFont('Comic Sans MS', 30)
+fonte = pygame.font.Font("util/fonte/upheavtt.ttf", 48)
 texto = fonte.render('Cursos Ninja', True, PRETO, BRANCO)
 
 background = pygame.image.load('util/img/background_inteiro.png').convert() #A- denominei o fundo como background
@@ -153,9 +153,9 @@ class GameOverScreen:
         self.tempo_inicial = time.time()
         self.screen = pygame.display.set_mode((self.LARGURA, self.ALTURA))
         pygame.display.set_caption('Game Over')
-        self.font = pygame.font.SysFont('Comic Sans MS', 48)
-        self.text = self.font.render('Game Over', True, (255, 0, 0))
-        self.text_rect = self.text.get_rect(center=(self.LARGURA // 2, self.ALTURA // 2))
+        self.font = pygame.font.Font("util/fonte/upheavtt.ttf", 60)
+        self.text = self.font.render('Game Over', True, (200, 0, 0))
+        self.text_rect = self.text.get_rect(center=(self.LARGURA // 2, self.ALTURA // 2 - 10)) 
 
     def run(self):
         while True:
@@ -278,10 +278,9 @@ while game:
             
     # ----- Gera saídas
     
-    fonte_score = pygame.font.SysFont('Comic Sans MS', 40)
+    fonte_score = pygame.font.Font("util/fonte/upheavtt.ttf", 35)
     texto_score = fonte_score.render('Score {0}'.format(Score), True, PRETO)
-    fonte_vida = pygame.font.SysFont('Comic Sans MS', 40)
-    texto_vidas = fonte_vida.render('Vidas {0}'.format(vida), True, PRETO)
+    texto_vidas = fonte_score.render('Vidas {0}'.format(vida), True, PRETO)
     
     janela.blit(background, (0,0)) #A - coloquei o fundo na janela
     janela.blit(texto_score, (100, 5))
