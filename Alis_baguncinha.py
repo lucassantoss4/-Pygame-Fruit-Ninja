@@ -85,44 +85,37 @@ lista_logos = [adm_img, ccomp_img, direito_img, ecomp_img, econo_img, mec_img, m
 
 ## -----SONS-------
 
-pygame.mixer.music.load('util/sons/FRUIT-NINJA-fundo.mp3')
-pygame.mixer.music.set_volume(0.4)
+canal1 = pygame.mixer.Channel(0)
+canal2 = pygame.mixer.Channel(1)
+canal3 = pygame.mixer.Channel(3)
+
+musica_fundo = pygame.mixer.Sound('util/sons/FRUIT-NINJA-fundo.mp3')
+
+explosao = pygame.mixer.Sound('util/sons/explode.mp3')
 
 #hits
-hit_0 = pygame.mixer.music.load('util/hits/hit0.mp3')
-hit_0 = pygame.mixer.music.set_volume(0.4)
+hit_0 = pygame.mixer.Sound('util/hits/hit0.mp3')
 
-hit_1 = pygame.mixer.music.load('util/hits/hit_1.mp3')
-hit_1 = pygame.mixer.music.set_volume(0.4)
+hit_1 = pygame.mixer.Sound('util/hits/hit1.mp3')
 
-hit_2 = pygame.mixer.music.load('util/hits/hit2.mp3')
-hit_2 = pygame.mixer.music.set_volume(0.4)
+hit_2 = pygame.mixer.Sound('util/hits/hit2.mp3')
 
-hit_3 = pygame.mixer.music.load('util/hits/hit3.mp3')
-hit_3 = pygame.mixer.music.set_volume(0.4)
+hit_3 = pygame.mixer.Sound('util/hits/hit3.mp3')
 
-hit_4 = pygame.mixer.music.load('util/hits/hit4.mp3')
-hit_4 = pygame.mixer.music.set_volume(0.4)
+hit_4 = pygame.mixer.Sound('util/hits/hit4.mp3')
 
-hit_5 = pygame.mixer.music.load('util/hits/hit5.mp3')
-hit_5 = pygame.mixer.music.set_volume(0.4)
+hit_5 = pygame.mixer.Sound('util/hits/hit5.mp3')
 
-hit_6 = pygame.mixer.music.load('util/hits/hit6.mp3')
-hit_6 = pygame.mixer.music.set_volume(0.4)
+hit_6 = pygame.mixer.Sound('util/hits/hit6.mp3')
 
-hit_7 = pygame.mixer.music.load('util/hits/hit7.mp3')
-hit_7 = pygame.mixer.music.set_volume(0.4)
+hit_7 = pygame.mixer.Sound('util/hits/hit7.mp3')
 
-hit_8 = pygame.mixer.music.load('util/hits/hit8.mp3')
-hit_8 = pygame.mixer.music.set_volume(0.4)
+hit_8 = pygame.mixer.Sound('util/hits/hit8.mp3')
 
-hit_9 = pygame.mixer.music.load('util/hits/hit9.mp3')
-hit_9 = pygame.mixer.music.set_volume(0.4)
+hit_9 = pygame.mixer.Sound('util/hits/hit9.mp3')
 
-hit_10 = pygame.mixer.music.load('util/hits/hit10.mp3')
-hit_10 = pygame.mixer.music.set_volume(0.4)
+lista_hits = [hit_0, hit_1, hit_2, hit_3, hit_4, hit_5, hit_6, hit_7, hit_8, hit_9]
 
-lista_hits = [hit_0, hit_1, hit_2, hit_3, hit_4, hit_5, hit_6, hit_7, hit_8, hit_9, hit_10]
 
 # ----- Inicia estruturas de dados
 
@@ -260,7 +253,8 @@ vida = 3
 game = True
 
 # ===== Loop principal =====
-pygame.mixer.music.play(loops=-1) #para tocar a música de fundo em loop
+canal1.play(musica_fundo, -1 )
+
 while game:
     #definindo tempo para execução do loop
     clock.tick(FPS)
@@ -284,12 +278,13 @@ while game:
     #obtem a posição do mouse para cortar as frutas  
     mouse_x, mouse_y = pygame.mouse.get_pos()
     
-    
     #--------- trata das logos e bombas
     for logo in todas_logos:
         if logo.rect.x < mouse_x < (logo.rect.x + ALTURA_OBJ) and logo.rect.y < mouse_y < (logo.rect.y + LARGURA_OBJ):
             logo.kill()
             Score += 100
+            canal2.stop()
+            canal2.play(random.choice(lista_hits))
         if logo.rect.x > LARGURA or logo.rect.x - ALTURA_OBJ < 0:
             logo.kill()
         if logo.rect.y > ALTURA:
@@ -299,6 +294,9 @@ while game:
         if bomba.rect.x < mouse_x < (bomba.rect.x + ALTURA_OBJ) and bomba.rect.y < mouse_y < (bomba.rect.y + LARGURA_OBJ):
             bomba.kill()
             vida -= 1
+            canal2.stop()
+            canal3.stop()
+            canal3.play(explosao)
         if bomba.rect.x > LARGURA or bomba.rect.x - ALTURA_OBJ < 0:
             bomba.kill()
         if bomba.rect.y > ALTURA:
