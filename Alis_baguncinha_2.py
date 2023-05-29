@@ -53,7 +53,7 @@ pygame.display.set_caption('Cursos Ninja')
 machado_img = pygame.image.load('util/img/MACHADO.png').convert_alpha()
 machado_img = pygame.transform.scale(machado_img, (LARGURA_OBJ+10, ALTURA_OBJ+10))
 
-#logo da bomba
+'''#logo da bomba
 bomba_1 = pygame.image.load('util/img/BOMBA.png').convert_alpha()
 bomba_1 = pygame.transform.scale(bomba_1, (LARGURA_OBJ-5, ALTURA_OBJ-5))
 
@@ -130,7 +130,7 @@ mecat_3 = pygame.transform.scale(mecat_3, (LARGURA_OBJ, ALTURA_OBJ))
 lista_logos = [adm_1, ccomp_1, direito_1, ecomp_1, econo_1, mec_1, mecat_1]
 lista_cortes = [adm_2, ccomp_2, direito_2, ecomp_2, econo_2, mec_2, mecat_2]
 lista_meio = [adm_3, ccomp_3, direito_3, ecomp_3, econo_3, mec_3, mecat_3]
-
+'''
 
 ## -----SONS-------
 
