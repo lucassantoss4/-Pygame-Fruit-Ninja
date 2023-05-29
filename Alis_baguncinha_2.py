@@ -55,77 +55,77 @@ machado_img = pygame.transform.scale(machado_img, (LARGURA_OBJ+10, ALTURA_OBJ+10
 
 #logo da bomba
 bomba_1 = pygame.image.load('util/img/BOMBA.png').convert_alpha()
-bomba_1 = pygame.transform.scale(bomba_1, (ALTURA_OBJ, LARGURA_OBJ))
+bomba_1 = pygame.transform.scale(bomba_1, (LARGURA_OBJ-5, ALTURA_OBJ-5))
 
 bomba_2 = pygame.image.load('util/img/BOMBA_CORTE.png').convert_alpha()
-bomba_2 = pygame.transform.scale(bomba_2, (ALTURA_OBJ, LARGURA_OBJ))
+bomba_2 = pygame.transform.scale(bomba_2, (LARGURA_OBJ-5, ALTURA_OBJ-5))
 
 bomba_3 = pygame.image.load('util/img/BOMBA_MEIO.png').convert_alpha()
-bomba_3 = pygame.transform.scale(bomba_3, (ALTURA_OBJ, LARGURA_OBJ))
+bomba_3 = pygame.transform.scale(bomba_3, (LARGURA_OBJ-5, ALTURA_OBJ-5))
 
 #logos dos cursos
 adm_1 = pygame.image.load('util/img/ADM.png').convert_alpha()
-adm_1 = pygame.transform.scale(adm_1, (ALTURA_OBJ, LARGURA_OBJ))
+adm_1 = pygame.transform.scale(adm_1, (LARGURA_OBJ, ALTURA_OBJ))
 
 adm_2 = pygame.image.load('util/img/ADM_CORTE.png').convert_alpha()
-adm_2 = pygame.transform.scale(adm_2, (ALTURA_OBJ, LARGURA_OBJ))
+adm_2 = pygame.transform.scale(adm_2, (LARGURA_OBJ, ALTURA_OBJ))
 
 adm_3 = pygame.image.load('util/img/ADM_MEIO.png').convert_alpha()
-adm_3 = pygame.transform.scale(adm_3, (ALTURA_OBJ, LARGURA_OBJ))
+adm_3 = pygame.transform.scale(adm_3, (LARGURA_OBJ, ALTURA_OBJ))
 
 ccomp_1 = pygame.image.load('util/img/CCOMP.png').convert_alpha()
-ccomp_1 = pygame.transform.scale(ccomp_1, (ALTURA_OBJ, LARGURA_OBJ))
+ccomp_1 = pygame.transform.scale(ccomp_1, (LARGURA_OBJ-5, ALTURA_OBJ-5))
 
 ccomp_2 = pygame.image.load('util/img/CCOMP_CORTE.png').convert_alpha()
-ccomp_2 = pygame.transform.scale(ccomp_2, (ALTURA_OBJ, LARGURA_OBJ))
+ccomp_2 = pygame.transform.scale(ccomp_2, (LARGURA_OBJ-5, ALTURA_OBJ-5))
 
 ccomp_3 = pygame.image.load('util/img/CCOMP_MEIO.png').convert_alpha()
-ccomp_3 = pygame.transform.scale(ccomp_3, (ALTURA_OBJ, LARGURA_OBJ))
+ccomp_3 = pygame.transform.scale(ccomp_3, (LARGURA_OBJ-5, ALTURA_OBJ-5))
 
 direito_1 = pygame.image.load('util/img/DIREITO.png').convert_alpha()
-direito_1 = pygame.transform.scale(direito_1, (ALTURA_OBJ, LARGURA_OBJ))
+direito_1 = pygame.transform.scale(direito_1, (LARGURA_OBJ+10, ALTURA_OBJ))
 
 direito_2 = pygame.image.load('util/img/DIREITO_CORTE.png').convert_alpha()
-direito_2 = pygame.transform.scale(direito_2, (ALTURA_OBJ, LARGURA_OBJ))
+direito_2 = pygame.transform.scale(direito_2, (LARGURA_OBJ+10, ALTURA_OBJ))
 
 direito_3 = pygame.image.load('util/img/DIREITO_MEIO.png').convert_alpha()
-direito_3 = pygame.transform.scale(direito_3, (ALTURA_OBJ, LARGURA_OBJ))
+direito_3 = pygame.transform.scale(direito_3, (LARGURA_OBJ+10, ALTURA_OBJ))
 
 ecomp_1 = pygame.image.load('util/img/ECOMP.png').convert_alpha()
-ecomp_1 = pygame.transform.scale(ecomp_1, (ALTURA_OBJ, LARGURA_OBJ))
+ecomp_1 = pygame.transform.scale(ecomp_1, (LARGURA_OBJ-10, ALTURA_OBJ+10))
 
 ecomp_2 = pygame.image.load('util/img/ECOMP_CORTE.png').convert_alpha()
-ecomp_2 = pygame.transform.scale(ecomp_2, (ALTURA_OBJ, LARGURA_OBJ))
+ecomp_2 = pygame.transform.scale(ecomp_2, (LARGURA_OBJ-10, ALTURA_OBJ+10))
 
 ecomp_3 = pygame.image.load('util/img/ECOMP_MEIO.png').convert_alpha()
-ecomp_3 = pygame.transform.scale(ecomp_3, (ALTURA_OBJ, LARGURA_OBJ))
+ecomp_3 = pygame.transform.scale(ecomp_3, (LARGURA_OBJ-10, ALTURA_OBJ+10))
 
 econo_1 = pygame.image.load('util/img/ECONO.png').convert_alpha()
-econo_1 = pygame.transform.scale(econo_1, (ALTURA_OBJ, LARGURA_OBJ))
+econo_1 = pygame.transform.scale(econo_1, (LARGURA_OBJ+7, ALTURA_OBJ+7))
 
 econo_2 = pygame.image.load('util/img/ECONO_CORTE.png').convert_alpha()
-econo_2 = pygame.transform.scale(econo_2, (ALTURA_OBJ, LARGURA_OBJ))
+econo_2 = pygame.transform.scale(econo_2, (LARGURA_OBJ+7, ALTURA_OBJ+7))
 
 econo_3 = pygame.image.load('util/img/ECONO_MEIO.png').convert_alpha()
-econo_3 = pygame.transform.scale(econo_3, (ALTURA_OBJ, LARGURA_OBJ))
+econo_3 = pygame.transform.scale(econo_3, (LARGURA_OBJ+7, ALTURA_OBJ+7))
 
 mec_1 = pygame.image.load('util/img/MEC.png').convert_alpha()
-mec_1 = pygame.transform.scale(mec_1, (ALTURA_OBJ, LARGURA_OBJ))
+mec_1 = pygame.transform.scale(mec_1, (LARGURA_OBJ, ALTURA_OBJ))
 
 mec_2 = pygame.image.load('util/img/MEC_CORTE.png').convert_alpha()
-mec_2 = pygame.transform.scale(mec_2, (ALTURA_OBJ, LARGURA_OBJ))
+mec_2 = pygame.transform.scale(mec_2, (LARGURA_OBJ, ALTURA_OBJ))
 
 mec_3 = pygame.image.load('util/img/MEC_MEIO.png').convert_alpha()
-mec_3 = pygame.transform.scale(mec_3, (ALTURA_OBJ, LARGURA_OBJ))
+mec_3 = pygame.transform.scale(mec_3, (LARGURA_OBJ, ALTURA_OBJ))
 
 mecat_1 = pygame.image.load('util/img/MECAT.png').convert_alpha()
-mecat_1 = pygame.transform.scale(mecat_1, (ALTURA_OBJ, LARGURA_OBJ))
+mecat_1 = pygame.transform.scale(mecat_1, (LARGURA_OBJ, ALTURA_OBJ))
 
 mecat_2 = pygame.image.load('util/img/MECAT_CORTE.png').convert_alpha()
-mecat_2 = pygame.transform.scale(mecat_2, (ALTURA_OBJ, LARGURA_OBJ))
+mecat_2 = pygame.transform.scale(mecat_2, (LARGURA_OBJ, ALTURA_OBJ))
 
 mecat_3 = pygame.image.load('util/img/MECAT_MEIO.png').convert_alpha()
-mecat_3 = pygame.transform.scale(mecat_3, (ALTURA_OBJ, LARGURA_OBJ))
+mecat_3 = pygame.transform.scale(mecat_3, (LARGURA_OBJ, ALTURA_OBJ))
 
 lista_logos = [adm_1, ccomp_1, direito_1, ecomp_1, econo_1, mec_1, mecat_1]
 lista_cortes = [adm_2, ccomp_2, direito_2, ecomp_2, econo_2, mec_2, mecat_2]
@@ -337,6 +337,7 @@ while game:
     #--------- trata das logos e bombas
     for logo in todas_logos:
         if logo.rect.x < mouse_x < (logo.rect.x + ALTURA_OBJ) and logo.rect.y < mouse_y < (logo.rect.y + LARGURA_OBJ):
+            pygame.mixer.music.play(loops=-1)
             logo.kill()
             Score += 100
         if logo.rect.x > LARGURA or logo.rect.x - ALTURA_OBJ < 0:
