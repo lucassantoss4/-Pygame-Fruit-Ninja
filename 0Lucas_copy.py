@@ -40,18 +40,27 @@ ALTURA_OBJ = 60
 LARGURA_OBJ = 60
 
 # configurações da tela e fonte do jogo
-janela = pygame.display.set_mode((LARGURA, ALTURA))
-janela.fill(BRANCO)
-fonte = pygame.font.Font("util/fonte/upheavtt.ttf", 48)
-texto = fonte.render('Cursos Ninja', True, PRETO, BRANCO)
+janela = pygame.display.set_mode((LARGURA, ALTURA)) # tela como janela
+janela.fill(BRANCO) # cor de fundo da janela
+fonte = pygame.font.Font("util/fonte/upheavtt.ttf", 48) # fonte do jogo
+texto = fonte.render('Cursos Ninja', True, PRETO, BRANCO)   # texto do jogo
 
-background = pygame.image.load('util/img/background_inteiro.png').convert() #A- denominei o fundo como background
-background = pygame.transform.scale(background, (LARGURA, ALTURA)) #A- escala
-pygame.display.set_caption('Cursos Ninja')
+background = pygame.image.load('util/img/background_inteiro.png').convert() #carrega a imagem de fundo
+background = pygame.transform.scale(background, (LARGURA, ALTURA)) # redimensiona a imagem de fundo
+
+fundo_pixel = pygame.image.load('util/img/fundo_pixel.jpg').convert_alpha()
+fundo_pixel = pygame.transform.scale(fundo_pixel, (LARGURA, ALTURA))
+
+pygame.display.set_caption('Cursos Ninja') # nome da janela
 
 ### IMAGENS
 machado_img = pygame.image.load('util/img/MACHADO.png').convert_alpha()
 machado_img = pygame.transform.scale(machado_img, (LARGURA_OBJ+10, ALTURA_OBJ+10))
+
+mouser_img = pygame.image.load('util/img/MAO_MOSER.png').convert_alpha() # mouse
+mouser_img = pygame.transform.scale(mouser_img, (LARGURA_OBJ, ALTURA_OBJ))
+
+
 
 bomba_img = pygame.image.load('util/img/BOMBA.png').convert_alpha()
 bomba_img = pygame.transform.scale(bomba_img, (LARGURA_OBJ-5, ALTURA_OBJ-5))
@@ -142,38 +151,6 @@ class Bombas(pygame.sprite.Sprite):
         #vai atualizar a posição
         self.rect.x += self.speedx
         self.rect.y += self.speedy
-        
-#-----------------Classe Da Tela -----------------#
-class GameOverScreen:
-    def __init__(self, LARGURA, ALTURA, tempo_maximo):
-        pygame.init()
-        self.LARGURA = LARGURA
-        self.ALTURA = ALTURA
-        self.tempo_maximo = tempo_maximo
-        self.tempo_inicial = time.time()
-        self.screen = pygame.display.set_mode((self.LARGURA, self.ALTURA))
-        pygame.display.set_caption('Game Over')
-        self.font = pygame.font.Font("util/fonte/upheavtt.ttf", 60)
-        self.text = self.font.render('Game Over', True, (200, 0, 0))
-        self.text_rect = self.text.get_rect(center=(self.LARGURA // 2, self.ALTURA // 2 - 10)) 
-
-    def run(self):
-        while True:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    sys.exit()
-
-            self.screen.fill((0, 0, 0))
-            self.screen.blit(self.text, self.text_rect)
-            pygame.display.flip()
-
-            # Verificar se o tempo máximo foi atingido
-            tempo_atual = time.time()
-            tempo_decorrido = tempo_atual - self.tempo_inicial
-            if tempo_decorrido >= self.tempo_maximo:
-                pygame.quit()
-                sys.exit()
 
 
 ##A- Cria grupos
@@ -197,9 +174,10 @@ for i in range(n_logos):
     
 #------- mouse
 
-pygame.mouse.set_visible(False)
+pygame.mouse.set_visible(False) #tira o mouse da tela
 # faca_img_rect = faca_img.get_rect()
-machado_img_rect = machado_img.get_rect()
+machado_img_rect = machado_img.get_rect() 
+mouser_img_rect = mouser_img.get_rect() #cria um retângulo para o mouse
 
 
 #------------ Jogo -----------#
@@ -210,7 +188,35 @@ FPS = 60
 
 #variáveis do jogo
 Score = 0
-vida = 3
+vida = 3 
+
+
+######### Tela de início #########
+botao_inicia = True
+while botao_inicia:
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            botao_inicia = False
+
+    mouser_img_pos = pygame.mouse.get_pos() #obtem a posição do mouse para desenhar a imagem do mouse
+
+    # ----- Gera saídas
+    # janela.fill((0, 0, 0))  # Preenche com a cor preta no fundo
+    janela.blit(fundo_pixel , (0, 0)) #coloca a imagem de fundo na tela
+
+    # Desenhe o cursor do mouse
+    # pygame.draw.circle(janela, VERMELHO, mouser_img, 10) #desenha um círculo vermelho no mouse
+    # Desenha a imagem do cursor personalizado na posição do mouse
+    
+    # pygame.draw.polygon
+    janela.blit(mouser_img, mouser_img_pos) #coloca a imagem do mouse na tela
+
+    pygame.display.flip()  # Mostra o novo frame para o jogador
 
 game = True
 
@@ -227,12 +233,11 @@ while game:
             game = False
             
     if vida == 0:
-        game_over_screen = GameOverScreen(LARGURA, ALTURA, 1)  # escreve "Game Over" por # segundos e encessa o jogo
-        game_over_screen.run()
         game = False
-            
+
     #obtem a posição do mouse para cortar as frutas  
     mouse_x, mouse_y = pygame.mouse.get_pos()
+    
     
     
     #--------- trata das logos e bombas
@@ -278,24 +283,52 @@ while game:
             
     # ----- Gera saídas
     
-    fonte_score = pygame.font.Font("util/fonte/upheavtt.ttf", 35)
-    texto_score = fonte_score.render('Score {0}'.format(Score), True, PRETO)
-    texto_vidas = fonte_score.render('Vidas {0}'.format(vida), True, PRETO)
+    fonte_score = pygame.font.Font("util/fonte/upheavtt.ttf", 35) #cria uma fonte
+    texto_score = fonte_score.render('Score {0}'.format(Score), True, PRETO) #cria um texto com a fonte criada
+    texto_vidas = fonte_score.render('Vidas {0}'.format(vida), True, PRETO) #cria um texto com a fonte criada
     
-    janela.blit(background, (0,0)) #A - coloquei o fundo na janela
-    janela.blit(texto_score, (100, 5))
-    janela.blit(texto_vidas, (700,5))
+    janela.blit(background, (0,0)) # fundo na janela
+    janela.blit(texto_score, (100, 5))# texto da pontuação na janela
+    janela.blit(texto_vidas, (700,5)) # texto das vidas na janela
     # faca_img_rect.center = pygame.mouse.get_pos()
-    machado_img_rect.center = pygame.mouse.get_pos()  
+    machado_img_rect.center = pygame.mouse.get_pos()  # coloquei o machado na posição do mouse
     # janela.blit(faca_img, faca_img_rect) 
-    janela.blit(machado_img, machado_img_rect)
+    janela.blit(machado_img, machado_img_rect) # coloca o machado na janela na posição do mouse
     #------- Desenha bombas e logos
     todas_bombas.draw(janela)
     todas_logos.draw(janela)
     
     pygame.display.update()  # Mostra o novo frame para o jogador
     
-    
+Tela_Game_Final = True
+tempo_maximo = 1  # tempo máximo para a tela de game over
+tempo_inicial = time.time()  # tempo inicial do jogo
+while Tela_Game_Final:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            # sys.exit()
+
+    screen = pygame.display.set_mode((LARGURA, ALTURA))  # cria a tela
+    pygame.display.set_caption('Game Over')  # nome da tela
+    font = pygame.font.Font("util/fonte/upheavtt.ttf", 60)
+    text = font.render('Game Over', True, (200, 0, 0))  # cor do texto e escrita
+    text_rect = text.get_rect(center=(LARGURA // 2, ALTURA // 2 - 10))  # posição do texto
+
+    # ----- Gera saídas
+
+    screen.fill((0, 0, 0)) # Preenche com a cor preta no fundo
+    screen.blit(text, text_rect)  # coloca o texto na tela
+    pygame.display.flip()  # atualiza a tela
+
+    # Verificar se o tempo máximo foi atingido
+    tempo_atual = time.time()
+    tempo_decorrido = tempo_atual - tempo_inicial  # tempo decorrido desde o início do jogo
+    if tempo_decorrido >= tempo_maximo:
+        game = False
+
+        Tela_Game_Final = False
+
 # ===== Finalização =====
 pygame.quit()  # Função do PyGame que finaliza os recursos utilizados
 
