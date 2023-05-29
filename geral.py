@@ -21,8 +21,8 @@ ALTURA_OBJ = 15
 
 
 #logo da faca
-faca_img = pygame.image.load('util/img/FACA.png').convert_alpha()
-faca_img = pygame.transform.scale(faca_img, (ALTURA_OBJ, LARGURA_OBJ))
+'''faca_img = pygame.image.load('util/img/FACA.png').convert_alpha()
+faca_img = pygame.transform.scale(faca_img, (ALTURA_OBJ, LARGURA_OBJ))'''
 
 #logo da bomba
 bomba_1 = pygame.image.load('util/img/BOMBA.png').convert_alpha()
@@ -141,3 +141,32 @@ lista_logos = [adm_1, ccomp_1, direito_1, ecomp_1, econo_1, mec_1, mecat_1]
 lista_cortes = [adm_2, ccomp_2, direito_2, ecomp_2, econo_2, mec_2, mecat_2]
 lista_meio = [adm_3, ccomp_3, direito_3, ecomp_3, econo_3, mec_3, mecat_3]
 lista_hits = [hit_0, hit_1, hit_2, hit_3, hit_4, hit_5, hit_6, hit_7, hit_8, hit_9, hit_10]
+
+
+#FOGO E FUMACA
+fogo1 = pygame.image.load('util/img/FOGO1.png').convert_alpha()
+fogo1 = pygame.transform.scale(fogo1, (ALTURA_OBJ, LARGURA_OBJ))
+
+fogo2 = pygame.image.load('util/img/FOGO2.png').convert_alpha()
+fogo2 = pygame.transform.scale(fogo2, (ALTURA_OBJ, LARGURA_OBJ))
+
+fogo3 = pygame.image.load('util/img/FOGO3.png').convert_alpha()
+fogo3 = pygame.transform.scale(fogo3, (ALTURA_OBJ, LARGURA_OBJ))
+
+fogo4 = pygame.image.load('util/img/FOGO4.png').convert_alpha()
+fogo4 = pygame.transform.scale(fogo4, (ALTURA_OBJ, LARGURA_OBJ))
+
+fumaca1 = pygame.image.load('util/img/FUMACA1.png').convert_alpha()
+fumaca1 = pygame.transform.scale(fumaca1, (ALTURA_OBJ, LARGURA_OBJ))
+
+fumaca2 = pygame.image.load('util/img/FUMACA2.png').convert_alpha()
+fumaca2 = pygame.transform.scale(fumaca2, (ALTURA_OBJ, LARGURA_OBJ))
+
+fumaca3 = pygame.image.load('util/img/FUMACA3.png').convert_alpha()
+fumaca3 = pygame.transform.scale(fumaca3, (ALTURA_OBJ, LARGURA_OBJ))
+
+fumaca4 = pygame.image.load('util/img/FUMACA4.png').convert_alpha()
+fumaca4 = pygame.transform.scale(fumaca4, (ALTURA_OBJ, LARGURA_OBJ))
+
+lista_fogo = [fogo4, fogo3, fogo2, fogo1]
+lista_fumaca = [fumaca4, fumaca3, fumaca2, fumaca1]
