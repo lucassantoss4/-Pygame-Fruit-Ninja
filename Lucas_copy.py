@@ -1,12 +1,4 @@
 # ===== Inicialização =====
-
-'''
-Legendas de atualização <3
-A <3
-G <3
-L <3
-'''
-
 # ----- Importa e inicia pacotes
 import pygame
 import random
@@ -155,7 +147,7 @@ class Bombas(pygame.sprite.Sprite):
 
 # função para exibir a tela de game over
 def exibir_tela_game_over(LARGURA, ALTURA):
-    Tela_Game_Final = True
+    Tela_Game_Final = True # variável para o loop da tela de game over
     tempo_maximo = 1  # tempo máximo para a tela de game over
     tempo_inicial = time.time()  # tempo inicial do jogo
 
@@ -184,7 +176,7 @@ def exibir_tela_game_over(LARGURA, ALTURA):
             Tela_Game_Final = False
 
 # função para exibir a tela de game over
-def aguardar_botao_iniciar(janela, fundo_pixel, mouser_img):
+def Tela_Iniciar_Botao(janela, fundo_pixel, mouser_img):
     botao_inicia = True
 
     while botao_inicia:
@@ -245,7 +237,7 @@ vida = 3
 
 
 ######### Tela de início #########
-aguardar_botao_iniciar(janela, fundo_pixel, mouser_img) # chama a função para exibir a tela de início
+Tela_Iniciar_Botao(janela, fundo_pixel, mouser_img) # chama a função para exibir a tela de início
 
 game = True
 
