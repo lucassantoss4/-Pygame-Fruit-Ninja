@@ -146,7 +146,7 @@ class Bombas(pygame.sprite.Sprite):
 
 
 # função para exibir a tela de game over
-def exibir_tela_game_over(LARGURA, ALTURA):
+def Tela_Game_Over(LARGURA, ALTURA):
     Tela_Game_Final = True # variável para o loop da tela de game over
     tempo_maximo = 1  # tempo máximo para a tela de game over
     tempo_inicial = time.time()  # tempo inicial do jogo
@@ -190,8 +190,14 @@ def Tela_Iniciar_Botao(janela, fundo_pixel, mouser_img):
 
         mouser_img_pos = pygame.mouse.get_pos()  # obtem a posição do mouse para desenhar a imagem do mouse
 
+        font = pygame.font.Font("util/fonte/upheavtt.ttf", 30)
+        texto2 = font.render('Aperte com o Mouser na tela', True, (200, 0, 0))  # cor do texto e escrita
+        texto2_rect = texto2.get_rect(center=(LARGURA // 2, ALTURA // 2 + 50))  # posição da mensagem
+
         # ----- Gera saídas
         janela.blit(fundo_pixel, (0, 0))  # coloca a imagem de fundo na tela
+        janela.blit(texto2, texto2_rect)  # coloca o texto na tela
+        janela.blit(mouser_img, mouser_img_pos)  # coloca a imagem do mouse na tela
 
         # Desenhe o cursor do mouse
         janela.blit(mouser_img, mouser_img_pos)  # coloca a imagem do mouse na tela
@@ -314,7 +320,7 @@ while game:
     pygame.display.update()  # Atualiza a tela para o jogador ver o novo frame
 
 if event.type != pygame.QUIT:  # Verifica se o evento não é o de fechar a janela
-    exibir_tela_game_over(LARGURA, ALTURA)  # Exibe a tela de game over
+    Tela_Game_Over(LARGURA, ALTURA)  # Exibe a tela de game over
 
 # ===== Finalização =====
 pygame.quit()  # Encerra os recursos utilizados pelo Pygame
