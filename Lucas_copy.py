@@ -191,10 +191,10 @@ def Tela_Iniciar_Botao(janela, fundo_pixel, mouser_img):
         mouser_img_pos = pygame.mouse.get_pos()  # obtem a posição do mouse para desenhar a imagem do mouse
 
         font = pygame.font.Font("util/fonte/upheavtt.ttf", 30)
-        texto2 = font.render('Aperte com o Mouser na tela', True, (200, 0, 0))  # cor do texto e escrita
+        texto2 = font.render('Aperte com o Mouser na tela', True, PRETO)  # cor do texto e escrita
         texto2_rect = texto2.get_rect(center=(LARGURA // 2, ALTURA // 2 + 50))  # posição da mensagem
 
-        # ----- Gera saídas
+        # ----- Gera saídas 
         janela.blit(fundo_pixel, (0, 0))  # coloca a imagem de fundo na tela
         janela.blit(texto2, texto2_rect)  # coloca o texto na tela
         janela.blit(mouser_img, mouser_img_pos)  # coloca a imagem do mouse na tela
