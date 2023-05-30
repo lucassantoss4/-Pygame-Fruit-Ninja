@@ -170,8 +170,7 @@ for i in range(n_logos):
     imagem = random.randint(0, 6)
     fruta = Logos(lista_logos[imagem])
     todas_logos.add(fruta)
-    
-    
+
 #------- mouse
 
 pygame.mouse.set_visible(False) #tira o mouse da tela
@@ -245,6 +244,8 @@ while game:
         if logo.rect.x < mouse_x < (logo.rect.x + ALTURA_OBJ) and logo.rect.y < mouse_y < (logo.rect.y + LARGURA_OBJ):
             logo.kill()
             Score += 100
+
+
         if logo.rect.x > LARGURA or logo.rect.x - ALTURA_OBJ < 0:
             logo.kill()
         if logo.rect.y > ALTURA:
@@ -299,35 +300,37 @@ while game:
     todas_logos.draw(janela)
     
     pygame.display.update()  # Mostra o novo frame para o jogador
-    
-Tela_Game_Final = True
-tempo_maximo = 1  # tempo máximo para a tela de game over
-tempo_inicial = time.time()  # tempo inicial do jogo
-while Tela_Game_Final:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            # sys.exit()
 
-    screen = pygame.display.set_mode((LARGURA, ALTURA))  # cria a tela
-    pygame.display.set_caption('Game Over')  # nome da tela
-    font = pygame.font.Font("util/fonte/upheavtt.ttf", 60)
-    text = font.render('Game Over', True, (200, 0, 0))  # cor do texto e escrita
-    text_rect = text.get_rect(center=(LARGURA // 2, ALTURA // 2 - 10))  # posição do texto
+# se o jogador apertar o botão de fechar a tela, o jogo fecha
+if event.type != pygame.QUIT:    
+    Tela_Game_Final = True
+    tempo_maximo = 1  # tempo máximo para a tela de game over
+    tempo_inicial = time.time()  # tempo inicial do jogo
+    while Tela_Game_Final:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                # sys.exit()
 
-    # ----- Gera saídas
+        screen = pygame.display.set_mode((LARGURA, ALTURA))  # cria a tela
+        pygame.display.set_caption('Game Over')  # nome da tela
+        font = pygame.font.Font("util/fonte/upheavtt.ttf", 60)
+        text = font.render('Game Over', True, (200, 0, 0))  # cor do texto e escrita
+        text_rect = text.get_rect(center=(LARGURA // 2, ALTURA // 2 - 10))  # posição do texto
 
-    screen.fill((0, 0, 0)) # Preenche com a cor preta no fundo
-    screen.blit(text, text_rect)  # coloca o texto na tela
-    pygame.display.flip()  # atualiza a tela
+        # ----- Gera saídas
 
-    # Verificar se o tempo máximo foi atingido
-    tempo_atual = time.time()
-    tempo_decorrido = tempo_atual - tempo_inicial  # tempo decorrido desde o início do jogo
-    if tempo_decorrido >= tempo_maximo:
-        game = False
+        screen.fill((0, 0, 0)) # Preenche com a cor preta no fundo
+        screen.blit(text, text_rect)  # coloca o texto na tela
+        pygame.display.flip()  # atualiza a tela
 
-        Tela_Game_Final = False
+        # Verificar se o tempo máximo foi atingido
+        tempo_atual = time.time()
+        tempo_decorrido = tempo_atual - tempo_inicial  # tempo decorrido desde o início do jogo
+        if tempo_decorrido >= tempo_maximo:
+            game = False
+
+            Tela_Game_Final = False
 
 # ===== Finalização =====
 pygame.quit()  # Função do PyGame que finaliza os recursos utilizados
