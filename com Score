@@ -25,8 +25,8 @@ ROXO = (169, 85, 255)
 
 ### TAMANHOS
 
-LARGURA = 1400
-ALTURA = 800
+LARGURA = 900
+ALTURA = 600
 
 ALTURA_OBJ = 60
 LARGURA_OBJ = 60
@@ -399,12 +399,6 @@ while game:
 
 if event.type != pygame.QUIT:  # Verifica se o evento não é o de fechar a janela
     Tela_Game_Over(LARGURA, ALTURA)  # Exibe a tela de game over
-    fonte_score = pygame.font.Font("util/fonte/upheavtt.ttf", 35)  # Cria uma fonte para o texto
-    texto_score = fonte_score.render('Score {0}'.format(Score), True, BRANCO)  # Renderiza o texto da pontuação
-    texto_vidas = fonte_score.render('Vidas {0}'.format(vida), True, BRANCO)
-    janela.blit(texto_vidas, (700,5))  # Desenha o texto das vidas na janela
-    janela.blit(texto_score, (100, 5))  # Desenha o texto da pontuação na janela
-    pygame.display.update()
 
 # ===== Finalização =====
 pygame.quit()  # Encerra os recursos utilizados pelo Pygame
