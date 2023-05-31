@@ -40,7 +40,7 @@ texto = fonte.render('Cursos Ninja', True, PRETO, BRANCO)   # texto do jogo
 background = pygame.image.load('util/img/background_inteiro.png').convert() #carrega a imagem de fundo
 background = pygame.transform.scale(background, (LARGURA, ALTURA)) # redimensiona a imagem de fundo
 
-fundo_pixel = pygame.image.load('util/img/fundo_inicial.jpg').convert_alpha()
+fundo_pixel = pygame.image.load('util/img/fundo_inicial.png.jpg').convert_alpha()
 fundo_pixel = pygame.transform.scale(fundo_pixel, (LARGURA, ALTURA))
 
 pygame.display.set_caption('Cursos Ninja') # nome da janela
