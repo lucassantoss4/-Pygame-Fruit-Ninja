@@ -450,7 +450,7 @@ while Loop:
                 animacoes.add(fumaca)
 
 
-            if logo.rect.x > LARGURA or logo.rect.x - LARGURA_OBJ < 0:
+            if logo.rect.x > LARGURA or logo.rect.x + LARGURA_OBJ < 0:
                 # Verifica se o objeto "logo" está fora dos limites da tela horizontalmente
                 logo.kill()  # Remove o objeto do grupo
             if logo.rect.y > ALTURA:
@@ -468,7 +468,7 @@ while Loop:
                 canal2.stop()
                 canal3.stop()
                 canal3.play(explosao)
-            if bomba.rect.x > LARGURA or bomba.rect.x - LARGURA_OBJ < 0:
+            if bomba.rect.x > LARGURA or bomba.rect.x + LARGURA_OBJ < 0:
                 # Verifica se o objeto "bomba" está fora dos limites da tela horizontalmente
                 bomba.kill()  # Remove o objeto do grupo
             if bomba.rect.y > ALTURA:
