@@ -211,7 +211,7 @@ class Bombas(pygame.sprite.Sprite):
 # função para exibir a tela de game over
 def Tela_Game_Over(LARGURA, ALTURA):
     Tela_Game_Final = True # variável para o loop da tela de game over
-    tempo_maximo = 1  # tempo máximo para a tela de game over
+    tempo_maximo = 3  # tempo máximo para a tela de game over
     tempo_inicial = time.time()  # tempo inicial do jogo
 
     while Tela_Game_Final:
