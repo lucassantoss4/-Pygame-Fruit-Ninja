@@ -227,6 +227,7 @@ def Tela_Game_Over(LARGURA, ALTURA):
         score = font.render('Score: ' + str(Score), True, (200, 0, 0))  # cor do texto e escrita
         text_rect = text.get_rect(center=(LARGURA // 2, ALTURA // 2 - 10))  # posição do texto
         score_rect = score.get_rect(center=(LARGURA // 2, ALTURA // 2 + 50))  # posição do texto
+        
 
         # ----- Gera saídas
 
@@ -234,7 +235,7 @@ def Tela_Game_Over(LARGURA, ALTURA):
         screen.blit(text, text_rect)  # coloca o texto na tela
         screen.blit(score, score_rect)  # coloca o texto na tela
         pygame.display.flip()  # atualiza a tela
-
+ 
         # Verificar se o tempo máximo foi atingido
         tempo_atual = time.time()
         tempo_decorrido = tempo_atual - tempo_inicial  # tempo decorrido desde o início do jogo
