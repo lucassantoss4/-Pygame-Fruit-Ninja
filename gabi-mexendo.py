@@ -52,8 +52,6 @@ machado_img = pygame.transform.scale(machado_img, (LARGURA_OBJ+10, ALTURA_OBJ+10
 mouser_img = pygame.image.load('util/img/MAO_MOSER.png').convert_alpha() # mouse
 mouser_img = pygame.transform.scale(mouser_img, (LARGURA_OBJ, ALTURA_OBJ))
 
-
-
 bomba_img = pygame.image.load('util/img/BOMBA.png').convert_alpha()
 bomba_img = pygame.transform.scale(bomba_img, (LARGURA_OBJ-5, ALTURA_OBJ-5))
 
@@ -84,10 +82,75 @@ mecat_img = pygame.transform.scale(mecat_img, (LARGURA_OBJ, ALTURA_OBJ))
 lista_logos = [adm_img, ccomp_img, direito_img, ecomp_img, econo_img, mec_img, mecat_img]
 
 
+#FOGO E FUMACA
+fogo1 = pygame.image.load('util/img/FOGO1.png').convert_alpha()
+fogo1 = pygame.transform.scale(fogo1, (ALTURA_OBJ, LARGURA_OBJ))
+
+fogo2 = pygame.image.load('util/img/FOGO2.png').convert_alpha()
+fogo2 = pygame.transform.scale(fogo2, (ALTURA_OBJ, LARGURA_OBJ))
+
+fogo3 = pygame.image.load('util/img/FOGO3.png').convert_alpha()
+fogo3 = pygame.transform.scale(fogo3, (ALTURA_OBJ, LARGURA_OBJ))
+
+fogo4 = pygame.image.load('util/img/FOGO4.png').convert_alpha()
+fogo4 = pygame.transform.scale(fogo4, (ALTURA_OBJ, LARGURA_OBJ))
+
+fumaca1 = pygame.image.load('util/img/FUMACA1.png').convert_alpha()
+fumaca1 = pygame.transform.scale(fumaca1, (ALTURA_OBJ, LARGURA_OBJ))
+
+fumaca2 = pygame.image.load('util/img/FUMACA2.png').convert_alpha()
+fumaca2 = pygame.transform.scale(fumaca2, (ALTURA_OBJ, LARGURA_OBJ))
+
+fumaca3 = pygame.image.load('util/img/FUMACA3.png').convert_alpha()
+fumaca3 = pygame.transform.scale(fumaca3, (ALTURA_OBJ, LARGURA_OBJ))
+
+fumaca4 = pygame.image.load('util/img/FUMACA4.png').convert_alpha()
+fumaca4 = pygame.transform.scale(fumaca4, (ALTURA_OBJ, LARGURA_OBJ))
+
+lista_fogo = [fogo4, fogo3, fogo2, fogo1]
+lista_fumaca = [fumaca4, fumaca3, fumaca2, fumaca1]
+
+
 ## -----SONS-------
 
 pygame.mixer.music.load('util/sons/FRUIT-NINJA-fundo.mp3')
 pygame.mixer.music.set_volume(0.4)
+
+
+
+## -----SONS-------
+
+canal1 = pygame.mixer.Channel(0)
+canal2 = pygame.mixer.Channel(1)
+canal3 = pygame.mixer.Channel(3)
+
+musica_fundo = pygame.mixer.Sound('util/sons/FRUIT-NINJA-fundo.mp3')
+
+explosao = pygame.mixer.Sound('util/sons/explode.mp3')
+
+#hits
+hit_0 = pygame.mixer.Sound('util/hits/hit0.mp3')
+
+hit_1 = pygame.mixer.Sound('util/hits/hit1.mp3')
+
+hit_2 = pygame.mixer.Sound('util/hits/hit2.mp3')
+
+hit_3 = pygame.mixer.Sound('util/hits/hit3.mp3')
+
+hit_4 = pygame.mixer.Sound('util/hits/hit4.mp3')
+
+hit_5 = pygame.mixer.Sound('util/hits/hit5.mp3')
+
+hit_6 = pygame.mixer.Sound('util/hits/hit6.mp3')
+
+hit_7 = pygame.mixer.Sound('util/hits/hit7.mp3')
+
+hit_8 = pygame.mixer.Sound('util/hits/hit8.mp3')
+
+hit_9 = pygame.mixer.Sound('util/hits/hit9.mp3')
+
+lista_hits = [hit_0, hit_1, hit_2, hit_3, hit_4, hit_5, hit_6, hit_7, hit_8, hit_9]
+
 
 # ----- Inicia estruturas de dados
 
@@ -235,10 +298,7 @@ for i in range(n_logos):
 #------- mouse
 
 pygame.mouse.set_visible(False) #tira o mouse da tela
-# faca_img_rect = faca_img.get_rect()
 machado_img_rect = machado_img.get_rect() 
-# mouser_img_rect = mouser_img.get_rect() #cria um retângulo para o mouse
-
 
 #------------ Jogo -----------#
     
@@ -256,13 +316,17 @@ Tela_Iniciar_Botao(janela, fundo_pixel, mouser_img) # chama a função para exib
 
 game = True
 
-pygame.mixer.music.play(loops=-1)  # Inicia a reprodução da música de fundo em loop
+# ===== Loop principal =====
+canal1.play(musica_fundo, -1 )
+
 while game:
     clock.tick(FPS)  # Limita o FPS do jogo
     
     for event in pygame.event.get():  # Obtém todos os eventos do Pygame
         if event.type == pygame.QUIT:  # Verifica se o evento é o de fechar a janela
-            game = False  # Encerra o jogo
+            pygame.quit()
+            sys.exit()
+        
             
     if vida == 0:  # Verifica se a vida do jogador é igual a zero
         game = False  # Encerra o jogo
@@ -274,6 +338,8 @@ while game:
             # Verifica se a posição do mouse está dentro das coordenadas do objeto "logo"
             logo.kill()  # Remove o objeto do grupo
             Score += 100  # Incrementa a pontuação do jogador
+            canal2.stop()
+            canal2.play(random.choice(lista_hits))
 
         if logo.rect.x > LARGURA or logo.rect.x - ALTURA_OBJ < 0:
             # Verifica se o objeto "logo" está fora dos limites da tela horizontalmente
@@ -287,6 +353,9 @@ while game:
             # Verifica se a posição do mouse está dentro das coordenadas do objeto "bomba"
             bomba.kill()  # Remove o objeto do grupo
             vida -= 1  # Decrementa a vida do jogador
+            canal2.stop()
+            canal3.stop()
+            canal3.play(explosao)
         if bomba.rect.x > LARGURA or bomba.rect.x - ALTURA_OBJ < 0:
             # Verifica se o objeto "bomba" está fora dos limites da tela horizontalmente
             bomba.kill()  # Remove o objeto do grupo
