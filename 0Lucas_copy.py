@@ -88,6 +88,39 @@ lista_logos = [adm_img, ccomp_img, direito_img, ecomp_img, econo_img, mec_img, m
 
 pygame.mixer.music.load('util/sons/FRUIT-NINJA-fundo.mp3')
 pygame.mixer.music.set_volume(0.4)
+## -----SONS-------
+
+canal1 = pygame.mixer.Channel(0)
+canal2 = pygame.mixer.Channel(1)
+canal3 = pygame.mixer.Channel(3)
+
+musica_fundo = pygame.mixer.Sound('util/sons/FRUIT-NINJA-fundo.mp3')
+
+explosao = pygame.mixer.Sound('util/sons/explode.mp3')
+
+#hits
+
+hit_0 = pygame.mixer.Sound('util/hits/hit0.mp3')
+
+hit_1 = pygame.mixer.Sound('util/hits/hit1.mp3')
+
+hit_2 = pygame.mixer.Sound('util/hits/hit2.mp3')
+
+hit_3 = pygame.mixer.Sound('util/hits/hit3.mp3')
+
+hit_4 = pygame.mixer.Sound('util/hits/hit4.mp3')
+
+hit_5 = pygame.mixer.Sound('util/hits/hit5.mp3')
+
+hit_6 = pygame.mixer.Sound('util/hits/hit6.mp3')
+
+hit_7 = pygame.mixer.Sound('util/hits/hit7.mp3')
+
+hit_8 = pygame.mixer.Sound('util/hits/hit8.mp3')
+
+hit_9 = pygame.mixer.Sound('util/hits/hit9.mp3')
+
+lista_hits = [hit_0, hit_1, hit_2, hit_3, hit_4, hit_5, hit_6, hit_7, hit_8, hit_9]
 
 # ----- Inicia estruturas de dados
 
@@ -178,7 +211,13 @@ def Tela_Game_Over(LARGURA, ALTURA):
 # função para exibir a tela de game over
 def Tela_Iniciar_Botao(janela, fundo_pixel, mouser_img):
     botao_inicia = True
-
+    # Coordenadas e dimensões do retângulo
+    x = 100
+    y = 100
+    largura_retangulo = 200
+    altura_retangulo = 100
+    retangulo = pygame.Rect(x, y, largura_retangulo, altura_retangulo)
+    
     while botao_inicia:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -188,10 +227,22 @@ def Tela_Iniciar_Botao(janela, fundo_pixel, mouser_img):
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 botao_inicia = False
 
-        mouser_img_pos = pygame.mouse.get_pos()  # obtem a posição do mouse para desenhar a imagem do mouse
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    botao_inicia = False
+        
+        # Coordenadas e dimensões do retângulo
 
-        # ----- Gera saídas
+        mouser_img_pos = pygame.mouse.get_pos()  # obtem a posição do mouse para desenhar a imagem do mouse
+        pygame.draw.rect(janela, (255, 0, 0), retangulo)  # desenha o retângulo na tela
+        font = pygame.font.Font("util/fonte/upheavtt.ttf", 30)
+        texto2 = font.render('Aperte com o Mouser na tela', True, PRETO)  # cor do texto e escrita
+        texto2_rect = texto2.get_rect(center=(LARGURA // 2, ALTURA // 2 + 50))  # posição da mensagem
+
+        # ----- Gera saídas 
         janela.blit(fundo_pixel, (0, 0))  # coloca a imagem de fundo na tela
+        janela.blit(texto2, texto2_rect)  # coloca o texto na tela
+        janela.blit(mouser_img, mouser_img_pos)  # coloca a imagem do mouse na tela
 
         # Desenhe o cursor do mouse
         janela.blit(mouser_img, mouser_img_pos)  # coloca a imagem do mouse na tela
@@ -235,16 +286,18 @@ FPS = 60
 Score = 0
 vida = 3 
 
-estado = "JOGANDO"
-
 
 ######### Tela de início #########
 Tela_Iniciar_Botao(janela, fundo_pixel, mouser_img) # chama a função para exibir a tela de início
 
 game = True
 
+# ===== Loop principal =====
+canal1.play(musica_fundo, -1 )
+
+
 pygame.mixer.music.play(loops=-1)  # Inicia a reprodução da música de fundo em loop
-while estado == "JOGANDO" :
+while game:
     clock.tick(FPS)  # Limita o FPS do jogo
     
     for event in pygame.event.get():  # Obtém todos os eventos do Pygame
@@ -252,8 +305,7 @@ while estado == "JOGANDO" :
             game = False  # Encerra o jogo
             
     if vida == 0:  # Verifica se a vida do jogador é igual a zero
-        # game = False  # Encerra o jogo
-        estado = "PERDEU"  # Muda o estado do jogo para 
+        game = False  # Encerra o jogo
 
     mouse_x, mouse_y = pygame.mouse.get_pos()  # Obtém a posição do mouse
     
@@ -316,13 +368,8 @@ while estado == "JOGANDO" :
 
     pygame.display.update()  # Atualiza a tela para o jogador ver o novo frame
 
-
-    if event.type != pygame.QUIT:  # Verifica se o evento não é o de fechar a janela
-        Tela_Game_Over(LARGURA, ALTURA)  # Exibe a tela de game over
-
-    while estado == "PERDEU":
-        Tela_Game_Over(LARGURA, ALTURA)
-        # Resto do código para reiniciar o jogo ou sair do programa...
+if event.type != pygame.QUIT:  # Verifica se o evento não é o de fechar a janela
+    Tela_Game_Over(LARGURA, ALTURA)  # Exibe a tela de game over
 
 # ===== Finalização =====
 pygame.quit()  # Encerra os recursos utilizados pelo Pygame
