@@ -155,7 +155,104 @@ lista_hits = [hit_0, hit_1, hit_2, hit_3, hit_4, hit_5, hit_6, hit_7, hit_8, hit
 # ----- Inicia estruturas de dados
 
 #-----------------Classes-----------------#
- 
+
+class Fogo(pygame.sprite.Sprite):
+    # Construtor da classe.
+    def __init__(self, center, lista):
+        # Construtor da classe mãe (Sprite).
+        pygame.sprite.Sprite.__init__(self)
+
+        # Armazena a animação de explosão
+        self.explosion_anim = lista_fogo
+
+        # Inicia o processo de animação colocando a primeira imagem na tela.
+        self.frame = 0  # Armazena o índice atual na animação
+        self.image = self.explosion_anim[self.frame]  # Pega a primeira imagem
+        self.rect = self.image.get_rect()
+        self.rect.center = center  # Posiciona o centro da imagem
+
+        # Guarda o tick da primeira imagem, ou seja, o momento em que a imagem foi mostrada
+        self.last_update = pygame.time.get_ticks()
+
+        # Controle de ticks de animação: troca de imagem a cada self.frame_ticks milissegundos.
+        # Quando pygame.time.get_ticks() - self.last_update > self.frame_ticks a
+        # próxima imagem da animação será mostrada
+        self.frame_ticks = 50
+
+    def update(self):
+        # Verifica o tick atual.
+        now = pygame.time.get_ticks()
+        # Verifica quantos ticks se passaram desde a ultima mudança de frame.
+        elapsed_ticks = now - self.last_update
+
+        # Se já está na hora de mudar de imagem...
+        if elapsed_ticks > self.frame_ticks:
+            # Marca o tick da nova imagem.
+            self.last_update = now
+
+            # Avança um quadro.
+            self.frame += 1
+
+            # Verifica se já chegou no final da animação.
+            if self.frame == len(self.explosion_anim):
+                # Se sim, tchau explosão!
+                self.kill()
+            else:
+                # Se ainda não chegou ao fim da explosão, troca de imagem.
+                center = self.rect.center
+                self.image = self.explosion_anim[self.frame]
+                self.rect = self.image.get_rect()
+                self.rect.center = center
+                
+class Fumaca(pygame.sprite.Sprite):
+    # Construtor da classe.
+    def __init__(self, center, lista):
+        # Construtor da classe mãe (Sprite).
+        pygame.sprite.Sprite.__init__(self)
+
+        # Armazena a animação de explosão
+        self.explosion_anim = lista_fumaca
+
+        # Inicia o processo de animação colocando a primeira imagem na tela.
+        self.frame = 0  # Armazena o índice atual na animação
+        self.image = self.explosion_anim[self.frame]  # Pega a primeira imagem
+        self.rect = self.image.get_rect()
+        self.rect.center = center  # Posiciona o centro da imagem
+
+        # Guarda o tick da primeira imagem, ou seja, o momento em que a imagem foi mostrada
+        self.last_update = pygame.time.get_ticks()
+
+        # Controle de ticks de animação: troca de imagem a cada self.frame_ticks milissegundos.
+        # Quando pygame.time.get_ticks() - self.last_update > self.frame_ticks a
+        # próxima imagem da animação será mostrada
+        self.frame_ticks = 50
+
+    def update(self):
+        # Verifica o tick atual.
+        now = pygame.time.get_ticks()
+        # Verifica quantos ticks se passaram desde a ultima mudança de frame.
+        elapsed_ticks = now - self.last_update
+
+        # Se já está na hora de mudar de imagem...
+        if elapsed_ticks > self.frame_ticks:
+            # Marca o tick da nova imagem.
+            self.last_update = now
+
+            # Avança um quadro.
+            self.frame += 1
+
+            # Verifica se já chegou no final da animação.
+            if self.frame == len(self.explosion_anim):
+                # Se sim, tchau explosão!
+                self.kill()
+            else:
+                # Se ainda não chegou ao fim da explosão, troca de imagem.
+                center = self.rect.center
+                self.image = self.explosion_anim[self.frame]
+                self.rect = self.image.get_rect()
+                self.rect.center = center
+            
+
 #criando a classe de logos
 class Logos(pygame.sprite.Sprite):
     def __init__(self, img):
@@ -206,40 +303,131 @@ class Bombas(pygame.sprite.Sprite):
         #vai atualizar a posição
         self.rect.x += self.speedx
         self.rect.y += self.speedy
+        
+            
+class Fogo(pygame.sprite.Sprite):
+    # Construtor da classe.
+    def __init__(self, center, img):
+        # Construtor da classe mãe (Sprite).
+        pygame.sprite.Sprite.__init__(self)
+
+        # Armazena a animação de explosão
+        self.explosion_anim = lista_fogo
+
+        # Inicia o processo de animação colocando a primeira imagem na tela.
+        self.frame = 0  # Armazena o índice atual na animação
+        self.image = self.explosion_anim[self.frame]  # Pega a primeira imagem
+        self.rect = self.image.get_rect()
+        self.rect.center = center  # Posiciona o centro da imagem
+
+        # Guarda o tick da primeira imagem, ou seja, o momento em que a imagem foi mostrada
+        self.last_update = pygame.time.get_ticks()
+
+        # Controle de ticks de animação: troca de imagem a cada self.frame_ticks milissegundos.
+        # Quando pygame.time.get_ticks() - self.last_update > self.frame_ticks a
+        # próxima imagem da animação será mostrada
+        self.frame_ticks = 50
+
+    def update(self):
+        # Verifica o tick atual.
+        now = pygame.time.get_ticks()
+        # Verifica quantos ticks se passaram desde a ultima mudança de frame.
+        elapsed_ticks = now - self.last_update
+
+        # Se já está na hora de mudar de imagem...
+        if elapsed_ticks > self.frame_ticks:
+            # Marca o tick da nova imagem.
+            self.last_update = now
+
+            # Avança um quadro.
+            self.frame += 1
+
+            # Verifica se já chegou no final da animação.
+            if self.frame == len(self.explosion_anim):
+                # Se sim, tchau explosão!
+                self.kill()
+            else:
+                # Se ainda não chegou ao fim da explosão, troca de imagem.
+                center = self.rect.center
+                self.image = self.explosion_anim[self.frame]
+                self.rect = self.image.get_rect()
+                self.rect.center = center
+                
+class Fumaca(pygame.sprite.Sprite):
+    # Construtor da classe.
+    def __init__(self, center, img):
+        # Construtor da classe mãe (Sprite).
+        pygame.sprite.Sprite.__init__(self)
+
+        # Armazena a animação de explosão
+        self.explosion_anim = lista_fumaca
+
+        # Inicia o processo de animação colocando a primeira imagem na tela.
+        self.frame = 0  # Armazena o índice atual na animação
+        self.image = self.explosion_anim[self.frame]  # Pega a primeira imagem
+        self.rect = self.image.get_rect()
+        self.rect.center = center  # Posiciona o centro da imagem
+
+        # Guarda o tick da primeira imagem, ou seja, o momento em que a imagem foi mostrada
+        self.last_update = pygame.time.get_ticks()
+
+        # Controle de ticks de animação: troca de imagem a cada self.frame_ticks milissegundos.
+        # Quando pygame.time.get_ticks() - self.last_update > self.frame_ticks a
+        # próxima imagem da animação será mostrada
+        self.frame_ticks = 50
+
+    def update(self):
+        # Verifica o tick atual.
+        now = pygame.time.get_ticks()
+        # Verifica quantos ticks se passaram desde a ultima mudança de frame.
+        elapsed_ticks = now - self.last_update
+
+        # Se já está na hora de mudar de imagem...
+        if elapsed_ticks > self.frame_ticks:
+            # Marca o tick da nova imagem.
+            self.last_update = now
+
+            # Avança um quadro.
+            self.frame += 1
+
+            # Verifica se já chegou no final da animação.
+            if self.frame == len(self.explosion_anim):
+                # Se sim, tchau explosão!
+                self.kill()
+            else:
+                # Se ainda não chegou ao fim da explosão, troca de imagem.
+                center = self.rect.center
+                self.image = self.explosion_anim[self.frame]
+                self.rect = self.image.get_rect()
+                self.rect.center = center
 
 
 # função para exibir a tela de game over
 def Tela_Game_Over(LARGURA, ALTURA):
     Tela_Game_Final = True # variável para o loop da tela de game over
-    tempo_maximo = 3  # tempo máximo para a tela de game over
+    tempo_maximo = 1  # tempo máximo para a tela de game over
     tempo_inicial = time.time()  # tempo inicial do jogo
+    screen = pygame.display.set_mode((LARGURA, ALTURA))  # cria a tela
+    pygame.display.set_caption('Game Over')  # nome da tela
+    font = pygame.font.Font("util/fonte/upheavtt.ttf", 60)
+    text = font.render('Game Over', True, (200, 0, 0))  # cor do texto e escrita
+    text_rect = text.get_rect(center=(LARGURA // 2, ALTURA // 2 - 10))  # posição do texto
 
-    while Tela_Game_Final:
+    # ----- Gera saídas
+
+    screen.fill((0, 0, 0))  # Preenche com a cor preta no fundo
+    screen.blit(text, text_rect)  # coloca o texto na tela
+    pygame.display.flip()  # atualiza a tela
+    
+    while Tela_Game_Final: 
+        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-
-        screen = pygame.display.set_mode((LARGURA, ALTURA))  # cria a tela
-        pygame.display.set_caption('Game Over')  # nome da tela
-        font = pygame.font.Font("util/fonte/upheavtt.ttf", 60)
-        text = font.render('Game Over', True, (200, 0, 0))  # cor do texto e escrita
-        score = font.render('Score: ' + str(Score), True, (200, 0, 0))  # cor do texto e escrita
-        text_rect = text.get_rect(center=(LARGURA // 2, ALTURA // 2 - 10))  # posição do texto
-        score_rect = score.get_rect(center=(LARGURA // 2, ALTURA // 2 + 50))  # posição do texto
-
-        # ----- Gera saídas
-
-        screen.fill((0, 0, 0))  # Preenche com a cor preta no fundo
-        screen.blit(text, text_rect)  # coloca o texto na tela
-        screen.blit(score, score_rect)  # coloca o texto na tela
-        pygame.display.flip()  # atualiza a tela
-
-        # Verificar se o tempo máximo foi atingido
-        tempo_atual = time.time()
-        tempo_decorrido = tempo_atual - tempo_inicial  # tempo decorrido desde o início do jogo
-        if tempo_decorrido >= tempo_maximo:
-            Tela_Game_Final = False
+            if event.type == pygame.KEYUP:
+                Tela_Game_Final = False
+                
 
 # função para exibir a tela de game over
 def Tela_Iniciar_Botao(janela, fundo_pixel, mouser_img):
@@ -283,6 +471,7 @@ def Tela_Iniciar_Botao(janela, fundo_pixel, mouser_img):
 ##A- Cria grupos
 todas_bombas = pygame.sprite.Group()
 todas_logos = pygame.sprite.Group()
+animacoes = pygame.sprite.Group()
 
 #adiciona elementos nos grupos
     #sorteia a quantidade de elementos de cada
@@ -315,93 +504,120 @@ vida = 3
 
 
 ######### Tela de início #########
-Tela_Iniciar_Botao(janela, fundo_pixel, mouser_img) # chama a função para exibir a tela de início
 
-game = True
 
-# ===== Loop principal =====
-canal1.play(musica_fundo, -1 )
+Loop =  True
 
-while game:
-    clock.tick(FPS)  # Limita o FPS do jogo
-    
-    for event in pygame.event.get():  # Obtém todos os eventos do Pygame
-        if event.type == pygame.QUIT:  # Verifica se o evento é o de fechar a janela
-            pygame.quit()
-            sys.exit()
+while Loop:
+
+    Tela_Iniciar_Botao(janela, fundo_pixel, mouser_img) # chama a função para exibir a tela de início
+
+    game = True
+
+    # ===== Loop principal =====
+    canal1.play(musica_fundo, -1 )
+
+    while game:
+        clock.tick(FPS)  # Limita o FPS do jogo
         
+        for event in pygame.event.get():  # Obtém todos os eventos do Pygame
+            if event.type == pygame.QUIT:  # Verifica se o evento é o de fechar a janela
+                pygame.quit()
+                sys.exit()
+                Loop = False
             
-    if vida == 0:  # Verifica se a vida do jogador é igual a zero
-        game = False  # Encerra o jogo
+                
+        if vida == 0:  # Verifica se a vida do jogador é igual a zero
+            game = False  # Encerra o jogo
 
-    mouse_x, mouse_y = pygame.mouse.get_pos()  # Obtém a posição do mouse
-    
-    for logo in todas_logos:  # Percorre todos os objetos do grupo "todas_logos"
-        if logo.rect.x < mouse_x < (logo.rect.x + ALTURA_OBJ) and logo.rect.y < mouse_y < (logo.rect.y + LARGURA_OBJ):
-            # Verifica se a posição do mouse está dentro das coordenadas do objeto "logo"
-            logo.kill()  # Remove o objeto do grupo
-            Score += 100  # Incrementa a pontuação do jogador
-            canal2.stop()
-            canal2.play(random.choice(lista_hits))
-
-        if logo.rect.x > LARGURA or logo.rect.x - ALTURA_OBJ < 0:
-            # Verifica se o objeto "logo" está fora dos limites da tela horizontalmente
-            logo.kill()  # Remove o objeto do grupo
-        if logo.rect.y > ALTURA:
-            # Verifica se o objeto "logo" está fora dos limites da tela verticalmente
-            logo.kill()  # Remove o objeto do grupo
-
-    for bomba in todas_bombas:  # Percorre todos os objetos do grupo "todas_bombas"
-        if bomba.rect.x < mouse_x < (bomba.rect.x + ALTURA_OBJ) and bomba.rect.y < mouse_y < (bomba.rect.y + LARGURA_OBJ):
-            # Verifica se a posição do mouse está dentro das coordenadas do objeto "bomba"
-            bomba.kill()  # Remove o objeto do grupo
-            vida -= 1  # Decrementa a vida do jogador
-            canal2.stop()
-            canal3.stop()
-            canal3.play(explosao)
-        if bomba.rect.x > LARGURA or bomba.rect.x - ALTURA_OBJ < 0:
-            # Verifica se o objeto "bomba" está fora dos limites da tela horizontalmente
-            bomba.kill()  # Remove o objeto do grupo
-        if bomba.rect.y > ALTURA:
-            # Verifica se o objeto "bomba" está fora dos limites da tela verticalmente
-            bomba.kill()  # Remove o objeto do grupo
-            
-    if len(todas_bombas) == 0 and len(todas_logos) == 0:
-        # Verifica se não existem mais objetos nos grupos "todas_bombas" e "todas_logos"
-        n_logos = random.randint(0, 6)  # Gera um número aleatório de logos
-        n_bombas = random.randint(0, 2)  # Gera um número aleatório de bombas
+        mouse_x, mouse_y = pygame.mouse.get_pos()  # Obtém a posição do mouse
         
-        for i in range(n_bombas):
-            # Cria e adiciona objetos do tipo "bomba" ao grupo "todas_bombas"
-            bomba = Bombas(bomba_img)
-            todas_bombas.add(bomba)
+        for logo in todas_logos:  # Percorre todos os objetos do grupo "todas_logos"
+            if logo.rect.x < mouse_x < (logo.rect.x + ALTURA_OBJ) and logo.rect.y < mouse_y < (logo.rect.y + LARGURA_OBJ):
+                # Verifica se a posição do mouse está dentro das coordenadas do objeto "logo"
+                logo.kill()  # Remove o objeto do grupo
+                Score += 100  # Incrementa a pontuação do jogador
+                canal2.stop()
+                canal2.play(random.choice(lista_hits))
+                fumaca = Fumaca(logo.rect.center, lista_fumaca)  # Cria um objeto "Fumaca" na posição do objeto "logo"
+                animacoes.add(fumaca)
 
-        for i in range(n_logos):
-            # Cria e adiciona objetos do tipo "fruta" ao grupo "todas_logos"
-            imagem = random.randint(0, 6)  # Escolhe uma imagem aleatória para a fruta
-            fruta = Logos(lista_logos[imagem])
-            todas_logos.add(fruta)        
 
-    todas_bombas.update()  # Atualiza a posição e o estado dos objetos do grupo "todas_bombas"
-    todas_logos.update()  # Atualiza a posição e o estado dos objetos do grupo "todas_logos"        
+            if logo.rect.x > LARGURA or logo.rect.x - LARGURA_OBJ < 0:
+                # Verifica se o objeto "logo" está fora dos limites da tela horizontalmente
+                logo.kill()  # Remove o objeto do grupo
+            if logo.rect.y > ALTURA:
+                # Verifica se o objeto "logo" está fora dos limites da tela verticalmente
+                logo.kill()  # Remove o objeto do grupo
+
+        for bomba in todas_bombas:  # Percorre todos os objetos do grupo "todas_bombas"
+            if bomba.rect.x < mouse_x < (bomba.rect.x + ALTURA_OBJ) and bomba.rect.y < mouse_y < (bomba.rect.y + LARGURA_OBJ):
+                # Verifica se a posição do mouse está dentro das coordenadas do objeto "bomba"
+                bomba.kill()  # Remove o objeto do grupo
+                vida -= 1  # Decrementa a vida do jogador
+                fogo = Fogo(bomba.rect.center, lista_fogo)  # Cria um objeto "Fumaca" na posição do objeto "logo"
+                animacoes.add(fogo)
+         
+                canal2.stop()
+                canal3.stop()
+                canal3.play(explosao)
+            if bomba.rect.x > LARGURA or bomba.rect.x - LARGURA_OBJ < 0:
+                # Verifica se o objeto "bomba" está fora dos limites da tela horizontalmente
+                bomba.kill()  # Remove o objeto do grupo
+            if bomba.rect.y > ALTURA:
+                # Verifica se o objeto "bomba" está fora dos limites da tela verticalmente
+                bomba.kill()  # Remove o objeto do grupo
+                
+        if len(todas_bombas) == 0 and len(todas_logos) == 0:
+            # Verifica se não existem mais objetos nos grupos "todas_bombas" e "todas_logos"
+            n_logos = random.randint(0, 6)  # Gera um número aleatório de logos
+            n_bombas = random.randint(0, 2)  # Gera um número aleatório de bombas
             
-    fonte_score = pygame.font.Font("util/fonte/upheavtt.ttf", 35)  # Cria uma fonte para o texto
-    texto_score = fonte_score.render('Score {0}'.format(Score), True, PRETO)  # Renderiza o texto da pontuação
-    texto_vidas = fonte_score.render('Vidas {0}'.format(vida), True, PRETO)  # Renderiza o texto das vidas
-    
-    janela.blit(background, (0,0))  # Desenha o fundo na janela
-    janela.blit(texto_score, (100, 5))  # Desenha o texto da pontuação na janela
-    janela.blit(texto_vidas, (700,5))  # Desenha o texto das vidas na janela
-    machado_img_rect.center = pygame.mouse.get_pos()  # Posiciona o machado na posição do mouse
-    janela.blit(machado_img, machado_img_rect)  # Desenha o machado na janela na posição do mouse
+            for i in range(n_bombas):
+                # Cria e adiciona objetos do tipo "bomba" ao grupo "todas_bombas"
+                bomba = Bombas(bomba_img)
+                todas_bombas.add(bomba)
 
-    todas_bombas.draw(janela)  # Desenha todos os objetos do grupo "todas_bombas" na janela
-    todas_logos.draw(janela)  # Desenha todos os objetos do grupo "todas_logos" na janela
+            for i in range(n_logos):
+                # Cria e adiciona objetos do tipo "fruta" ao grupo "todas_logos"
+                imagem = random.randint(0, 6)  # Escolhe uma imagem aleatória para a fruta
+                fruta = Logos(lista_logos[imagem])
+                todas_logos.add(fruta)        
 
-    pygame.display.update()  # Atualiza a tela para o jogador ver o novo frame
+        todas_bombas.update()  # Atualiza a posição e o estado dos objetos do grupo "todas_bombas"
+        todas_logos.update()  # Atualiza a posição e o estado dos objetos do grupo "todas_logos"        
+        animacoes.update() 
+                
+        fonte_score = pygame.font.Font("util/fonte/upheavtt.ttf", 35)  # Cria uma fonte para o texto
+        texto_score = fonte_score.render('Score {0}'.format(Score), True, PRETO)  # Renderiza o texto da pontuação
+        texto_vidas = fonte_score.render('Vidas {0}'.format(vida), True, PRETO)  # Renderiza o texto das vidas
+        
+        janela.blit(background, (0,0))  # Desenha o fundo na janela
+        janela.blit(texto_score, (100, 5))  # Desenha o texto da pontuação na janela
+        janela.blit(texto_vidas, (700,5))  # Desenha o texto das vidas na janela
+        machado_img_rect.center = pygame.mouse.get_pos()  # Posiciona o machado na posição do mouse
+        janela.blit(machado_img, machado_img_rect)  # Desenha o machado na janela na posição do mouse
 
-if event.type != pygame.QUIT:  # Verifica se o evento não é o de fechar a janela
-    Tela_Game_Over(LARGURA, ALTURA)  # Exibe a tela de game over
+        todas_bombas.draw(janela)  # Desenha todos os objetos do grupo "todas_bombas" na janela
+        todas_logos.draw(janela)  # Desenha todos os objetos do grupo "todas_logos" na janela
+        animacoes.draw(janela)
+        
+
+        pygame.display.update()  # Atualiza a tela para o jogador ver o novo frame
+
+    if event.type != pygame.QUIT:  # Verifica se o evento não é o de fechar a janela
+        Tela_Game_Over(LARGURA, ALTURA)  # Exibe a tela de game over
+        if event.type == event.type == pygame.KEYDOWN:
+            game = True 
+        
 
 # ===== Finalização =====
 pygame.quit()  # Encerra os recursos utilizados pelo Pygame
+
+
+"""
+Colocar score - OK
+Fazer animações
+criar loop 
+Quebrar o código
+"""
