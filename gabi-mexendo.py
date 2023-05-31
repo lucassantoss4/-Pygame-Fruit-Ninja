@@ -158,7 +158,7 @@ lista_hits = [hit_0, hit_1, hit_2, hit_3, hit_4, hit_5, hit_6, hit_7, hit_8, hit
 
 class Fogo(pygame.sprite.Sprite):
     # Construtor da classe.
-    def __init__(self, center, img):
+    def __init__(self, center, lista):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
 
@@ -206,7 +206,7 @@ class Fogo(pygame.sprite.Sprite):
                 
 class Fumaca(pygame.sprite.Sprite):
     # Construtor da classe.
-    def __init__(self, center, img):
+    def __init__(self, center, lista):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
 
@@ -407,13 +407,6 @@ def Tela_Game_Over(LARGURA, ALTURA):
     Tela_Game_Final = True # variável para o loop da tela de game over
     tempo_maximo = 1  # tempo máximo para a tela de game over
     tempo_inicial = time.time()  # tempo inicial do jogo
-
-    
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
-
     screen = pygame.display.set_mode((LARGURA, ALTURA))  # cria a tela
     pygame.display.set_caption('Game Over')  # nome da tela
     font = pygame.font.Font("util/fonte/upheavtt.ttf", 60)
@@ -426,15 +419,15 @@ def Tela_Game_Over(LARGURA, ALTURA):
     screen.blit(text, text_rect)  # coloca o texto na tela
     pygame.display.flip()  # atualiza a tela
     
-    
-    
     while Tela_Game_Final: 
-
-        # Verificar se o tempo máximo foi atingido
-        tempo_atual = time.time()
-        tempo_decorrido = tempo_atual - tempo_inicial  # tempo decorrido desde o início do jogo
-        if tempo_decorrido >= tempo_maximo:
-            Tela_Game_Final = False
+        
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.KEYUP:
+                Tela_Game_Final = False
+                
 
 # função para exibir a tela de game over
 def Tela_Iniciar_Botao(janela, fundo_pixel, mouser_img):
@@ -478,6 +471,7 @@ def Tela_Iniciar_Botao(janela, fundo_pixel, mouser_img):
 ##A- Cria grupos
 todas_bombas = pygame.sprite.Group()
 todas_logos = pygame.sprite.Group()
+animacoes = pygame.sprite.Group()
 
 #adiciona elementos nos grupos
     #sorteia a quantidade de elementos de cada
@@ -545,9 +539,11 @@ while Loop:
                 Score += 100  # Incrementa a pontuação do jogador
                 canal2.stop()
                 canal2.play(random.choice(lista_hits))
-                # Fumaca(logo.rect.x, logo.rect.y)  # Cria um objeto "Fumaca" na posição do objeto "logo"
+                fumaca = Fumaca(logo.rect.center, lista_fumaca)  # Cria um objeto "Fumaca" na posição do objeto "logo"
+                animacoes.add(fumaca)
 
-            if logo.rect.x > LARGURA or logo.rect.x - ALTURA_OBJ < 0:
+
+            if logo.rect.x > LARGURA or logo.rect.x - LARGURA_OBJ < 0:
                 # Verifica se o objeto "logo" está fora dos limites da tela horizontalmente
                 logo.kill()  # Remove o objeto do grupo
             if logo.rect.y > ALTURA:
@@ -559,10 +555,13 @@ while Loop:
                 # Verifica se a posição do mouse está dentro das coordenadas do objeto "bomba"
                 bomba.kill()  # Remove o objeto do grupo
                 vida -= 1  # Decrementa a vida do jogador
+                fogo = Fogo(bomba.rect.center, lista_fogo)  # Cria um objeto "Fumaca" na posição do objeto "logo"
+                animacoes.add(fogo)
+         
                 canal2.stop()
                 canal3.stop()
                 canal3.play(explosao)
-            if bomba.rect.x > LARGURA or bomba.rect.x - ALTURA_OBJ < 0:
+            if bomba.rect.x > LARGURA or bomba.rect.x - LARGURA_OBJ < 0:
                 # Verifica se o objeto "bomba" está fora dos limites da tela horizontalmente
                 bomba.kill()  # Remove o objeto do grupo
             if bomba.rect.y > ALTURA:
@@ -587,6 +586,7 @@ while Loop:
 
         todas_bombas.update()  # Atualiza a posição e o estado dos objetos do grupo "todas_bombas"
         todas_logos.update()  # Atualiza a posição e o estado dos objetos do grupo "todas_logos"        
+        animacoes.update() 
                 
         fonte_score = pygame.font.Font("util/fonte/upheavtt.ttf", 35)  # Cria uma fonte para o texto
         texto_score = fonte_score.render('Score {0}'.format(Score), True, PRETO)  # Renderiza o texto da pontuação
@@ -600,6 +600,8 @@ while Loop:
 
         todas_bombas.draw(janela)  # Desenha todos os objetos do grupo "todas_bombas" na janela
         todas_logos.draw(janela)  # Desenha todos os objetos do grupo "todas_logos" na janela
+        animacoes.draw(janela)
+        
 
         pygame.display.update()  # Atualiza a tela para o jogador ver o novo frame
 
