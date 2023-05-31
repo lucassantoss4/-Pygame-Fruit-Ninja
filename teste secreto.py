@@ -2,7 +2,7 @@
 
 '''
 Legendas de atualização <3
-A <3
+A <3 COMMIT
 G <3
 L <3
 '''
