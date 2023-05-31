@@ -222,9 +222,10 @@ def Tela_Game_Over(LARGURA, ALTURA):
 
         screen = pygame.display.set_mode((LARGURA, ALTURA))  # cria a tela
         pygame.display.set_caption('Game Over')  # nome da tela
-        font = pygame.font.Font("util/fonte/upheavtt.ttf", 60)
-        text = font.render('Game Over', True, (200, 0, 0))  # cor do texto e escrita
-        score = font.render('Score: ' + str(Score), True, (200, 0, 0))  # cor do texto e escrita
+        font = pygame.font.Font("util/fonte/upheavtt.ttf", 60)  # fonte do texto
+        font2 = pygame.font.Font("util/fonte/upheavtt.ttf", 30) # fonte do score
+        text = font.render('Game Over', True, BRANCO)  # cor do texto e escrita
+        score = font2.render('Score: ' + str(Score), True, (200, 0, 0))  # cor do texto e escrita
         text_rect = text.get_rect(center=(LARGURA // 2, ALTURA // 2 - 10))  # posição do texto
         score_rect = score.get_rect(center=(LARGURA // 2, ALTURA // 2 + 50))  # posição do texto
         
