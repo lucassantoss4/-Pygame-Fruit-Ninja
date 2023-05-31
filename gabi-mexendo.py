@@ -616,8 +616,8 @@ pygame.quit()  # Encerra os recursos utilizados pelo Pygame
 
 
 """
-Colocar score
+Colocar score - OK
 Fazer animações
-criar loop
+criar loop 
 Quebrar o código
 """
