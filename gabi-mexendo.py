@@ -310,20 +310,27 @@ def Tela_Game_Over(LARGURA, ALTURA):
     Tela_Game_Final = True # variável para o loop da tela de game over
     tempo_maximo = 3  # tempo máximo para a tela de game over
     tempo_inicial = time.time()  # tempo inicial do jogo
+    pygame.mouse.set_visible(True)
+    
     
     screen = pygame.display.set_mode((LARGURA, ALTURA))  # cria a tela
     pygame.display.set_caption('Game Over')  # nome da tela
-    font = pygame.font.Font("util/fonte/upheavtt.ttf", 60)
-    text = font.render('Game Over', True, (200, 0, 0))  # cor do texto e escrita
-    score = font.render('Score: ' + str(Score), True, (200, 0, 0))  # cor do texto e escrita
-    text_rect = text.get_rect(center=(LARGURA // 2, ALTURA // 2 - 10))  # posição do texto
-    score_rect = score.get_rect(center=(LARGURA // 2, ALTURA // 2 + 50))  # posição do texto
+    font = pygame.font.Font("util/fonte/upheavtt.ttf", 60)  # fonte do texto
+    font2 = pygame.font.Font("util/fonte/upheavtt.ttf", 90) # fonte do score
+    font3 = pygame.font.Font("util/fonte/upheavtt.ttf", 30) # fonte do reinicar
+    text = font.render('Game Over', True, VERMELHO)  # cor do texto e escrita
+    score = font2.render('Score: ' + str(Score), True, BRANCO)  # cor do texto e escrita
+    text_rect = text.get_rect(center=(LARGURA // 2, ALTURA // 2))  # posição do texto
+    score_rect = score.get_rect(center=(LARGURA // 2, ALTURA // 2 - 90))  # posição do texto
+    text3 = font3.render('Pressione qualquer tecla para reiniciar', True, BRANCO)
+    text3_rect = text3.get_rect(center=(LARGURA // 2, ALTURA // 2 + 80))
 
     # ----- Gera saídas
 
     screen.fill((0, 0, 0))  # Preenche com a cor preta no fundo
     screen.blit(text, text_rect)  # coloca o texto na tela
     screen.blit(score, score_rect)  # coloca o texto na tela
+    screen.blit(text3, text3_rect)
     pygame.display.flip()  # atualiza a tela
 
     while Tela_Game_Final: 
@@ -449,8 +456,10 @@ while game:
 
         if logo.rect.x > LARGURA or logo.rect.x + LARGURA_OBJ < 0:
             # Verifica se o objeto "logo" está fora dos limites da tela horizontalmente
+            Score -= 50
             logo.kill()  # Remove o objeto do grupo
         if logo.rect.y > ALTURA:
+            Score -= 50
             # Verifica se o objeto "logo" está fora dos limites da tela verticalmente
             logo.kill()  # Remove o objeto do grupo
 
