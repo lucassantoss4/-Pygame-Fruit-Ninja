@@ -40,7 +40,7 @@ texto = fonte.render('Cursos Ninja', True, PRETO, BRANCO)   # texto do jogo
 background = pygame.image.load('util/img/background_inteiro.png').convert() #carrega a imagem de fundo
 background = pygame.transform.scale(background, (LARGURA, ALTURA)) # redimensiona a imagem de fundo
 
-fundo_pixel = pygame.image.load('util/img/fundo_pixel.jpg').convert_alpha()
+fundo_pixel = pygame.image.load('util/img/fundo_inicial.jpg').convert_alpha()
 fundo_pixel = pygame.transform.scale(fundo_pixel, (LARGURA, ALTURA))
 
 pygame.display.set_caption('Cursos Ninja') # nome da janela
@@ -203,12 +203,9 @@ def Tela_Iniciar_Botao(janela, fundo_pixel, mouser_img):
         mouser_img_pos = pygame.mouse.get_pos()  # obtem a posição do mouse para desenhar a imagem do mouse
         pygame.draw.rect(janela, (255, 0, 0), retangulo)  # desenha o retângulo na tela
         font = pygame.font.Font("util/fonte/upheavtt.ttf", 30)
-        texto2 = font.render('Aperte com o Mouser na tela', True, PRETO)  # cor do texto e escrita
-        texto2_rect = texto2.get_rect(center=(LARGURA // 2, ALTURA // 2 + 50))  # posição da mensagem
-
+        
         # ----- Gera saídas 
         janela.blit(fundo_pixel, (0, 0))  # coloca a imagem de fundo na tela
-        janela.blit(texto2, texto2_rect)  # coloca o texto na tela
         janela.blit(mouser_img, mouser_img_pos)  # coloca a imagem do mouse na tela
 
         # Desenhe o cursor do mouse
