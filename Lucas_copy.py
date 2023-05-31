@@ -178,7 +178,13 @@ def Tela_Game_Over(LARGURA, ALTURA):
 # função para exibir a tela de game over
 def Tela_Iniciar_Botao(janela, fundo_pixel, mouser_img):
     botao_inicia = True
-
+    # Coordenadas e dimensões do retângulo
+    x = 100
+    y = 100
+    largura_retangulo = 200
+    altura_retangulo = 100
+    retangulo = pygame.Rect(x, y, largura_retangulo, altura_retangulo)
+    
     while botao_inicia:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -188,8 +194,14 @@ def Tela_Iniciar_Botao(janela, fundo_pixel, mouser_img):
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 botao_inicia = False
 
-        mouser_img_pos = pygame.mouse.get_pos()  # obtem a posição do mouse para desenhar a imagem do mouse
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    botao_inicia = False
+        
+        # Coordenadas e dimensões do retângulo
 
+        mouser_img_pos = pygame.mouse.get_pos()  # obtem a posição do mouse para desenhar a imagem do mouse
+        pygame.draw.rect(janela, (255, 0, 0), retangulo)  # desenha o retângulo na tela
         font = pygame.font.Font("util/fonte/upheavtt.ttf", 30)
         texto2 = font.render('Aperte com o Mouser na tela', True, PRETO)  # cor do texto e escrita
         texto2_rect = texto2.get_rect(center=(LARGURA // 2, ALTURA // 2 + 50))  # posição da mensagem
