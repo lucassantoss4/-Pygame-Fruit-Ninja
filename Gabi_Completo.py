@@ -50,43 +50,107 @@ background = pygame.transform.scale(background, (LARGURA, ALTURA)) #A- escala
 pygame.display.set_caption('Cursos Ninja')
 
 ### IMAGENS
+
+
+#logo machado
+
 machado_img = pygame.image.load('util/img/MACHADO.png').convert_alpha()
 machado_img = pygame.transform.scale(machado_img, (LARGURA_OBJ+10, ALTURA_OBJ+10))
 
-bomba_img = pygame.image.load('util/img/BOMBA.png').convert_alpha()
-bomba_img = pygame.transform.scale(bomba_img, (LARGURA_OBJ-5, ALTURA_OBJ-5))
+#logo da bomba
+bomba_1 = pygame.image.load('util/img/BOMBA.png').convert_alpha()
+bomba_1 = pygame.transform.scale(bomba_1, (ALTURA_OBJ, LARGURA_OBJ))
 
-faca_img = pygame.image.load('util/img/FACA.png').convert_alpha()
-faca_img = pygame.transform.scale(faca_img, (LARGURA_OBJ, ALTURA_OBJ))
+#logos dos cursos
+adm_1 = pygame.image.load('util/img/ADM.png').convert_alpha()
+adm_1 = pygame.transform.scale(adm_1, (ALTURA_OBJ, LARGURA_OBJ))
 
-adm_img = pygame.image.load('util/img/ADM.png').convert_alpha()
-adm_img = pygame.transform.scale(adm_img, (LARGURA_OBJ, ALTURA_OBJ))
+ccomp_1 = pygame.image.load('util/img/CCOMP.png').convert_alpha()
+ccomp_1 = pygame.transform.scale(ccomp_1, (ALTURA_OBJ, LARGURA_OBJ))
 
-ccomp_img = pygame.image.load('util/img/CCOMP.png').convert_alpha()
-ccomp_img = pygame.transform.scale(ccomp_img, (LARGURA_OBJ-5, ALTURA_OBJ-5))
+direito_1 = pygame.image.load('util/img/DIREITO.png').convert_alpha()
+direito_1 = pygame.transform.scale(direito_1, (ALTURA_OBJ, LARGURA_OBJ))
 
-direito_img = pygame.image.load('util/img/DIREITO.png').convert_alpha()
-direito_img = pygame.transform.scale(direito_img, (LARGURA_OBJ+10, ALTURA_OBJ))
+ecomp_1 = pygame.image.load('util/img/ECOMP.png').convert_alpha()
+ecomp_1 = pygame.transform.scale(ecomp_1, (ALTURA_OBJ, LARGURA_OBJ))
 
-ecomp_img = pygame.image.load('util/img/ECOMP.png').convert_alpha()
-ecomp_img = pygame.transform.scale(ecomp_img, (LARGURA_OBJ-10, ALTURA_OBJ+10))
+econo_1 = pygame.image.load('util/img/ECONO.png').convert_alpha()
+econo_1 = pygame.transform.scale(econo_1, (ALTURA_OBJ, LARGURA_OBJ))
 
-econo_img = pygame.image.load('util/img/ECONO.png').convert_alpha()
-econo_img = pygame.transform.scale(econo_img, (LARGURA_OBJ+7, ALTURA_OBJ+7))
+mec_1 = pygame.image.load('util/img/MEC.png').convert_alpha()
+mec_1 = pygame.transform.scale(mec_1, (ALTURA_OBJ, LARGURA_OBJ))
 
-mec_img = pygame.image.load('util/img/MEC.png').convert_alpha()
-mec_img = pygame.transform.scale(mec_img, (LARGURA_OBJ, ALTURA_OBJ))
+mecat_1 = pygame.image.load('util/img/MECAT.png').convert_alpha()
+mecat_1 = pygame.transform.scale(mecat_1, (ALTURA_OBJ, LARGURA_OBJ))
 
-mecat_img = pygame.image.load('util/img/MECAT.png').convert_alpha()
-mecat_img = pygame.transform.scale(mecat_img, (LARGURA_OBJ, ALTURA_OBJ))
+###SONS
 
-lista_logos = [adm_img, ccomp_img, direito_img, ecomp_img, econo_img, mec_img, mecat_img]
+# #hits
+# hit_0 = pygame.mixer.music.load('util/hits/hit0.mp3')
+# hit_0 = pygame.mixer.music.set_volume(0.4)
+
+# hit_1 = pygame.mixer.music.load('util/hits/hit_1.mp3')
+# hit_1 = pygame.mixer.music.set_volume(0.4)
+
+# hit_2 = pygame.mixer.music.load('util/hits/hit2.mp3')
+# hit_2 = pygame.mixer.music.set_volume(0.4)
+
+# hit_3 = pygame.mixer.music.load('util/hits/hit3.mp3')
+# hit_3 = pygame.mixer.music.set_volume(0.4)
+
+# hit_4 = pygame.mixer.music.load('util/hits/hit4.mp3')
+# hit_4 = pygame.mixer.music.set_volume(0.4)
+
+# hit_5 = pygame.mixer.music.load('util/hits/hit5.mp3')
+# hit_5 = pygame.mixer.music.set_volume(0.4)
+
+# hit_6 = pygame.mixer.music.load('util/hits/hit6.mp3')
+# hit_6 = pygame.mixer.music.set_volume(0.4)
+
+# hit_7 = pygame.mixer.music.load('util/hits/hit7.mp3')
+# hit_7 = pygame.mixer.music.set_volume(0.4)
+
+# hit_8 = pygame.mixer.music.load('util/hits/hit8.mp3')
+# hit_8 = pygame.mixer.music.set_volume(0.4)
+
+# hit_9 = pygame.mixer.music.load('util/hits/hit9.mp3')
+# hit_9 = pygame.mixer.music.set_volume(0.4)
+
+# hit_10 = pygame.mixer.music.load('util/hits/hit10.mp3')
+# hit_10 = pygame.mixer.music.set_volume(0.4)
+
+#listas
+lista_logos = [adm_1, ccomp_1, direito_1, ecomp_1, econo_1, mec_1, mecat_1]
+# lista_hits = [hit_0, hit_1, hit_2, hit_3, hit_4, hit_5, hit_6, hit_7, hit_8, hit_9, hit_10]
 
 
-## -----SONS-------
+#FOGO E FUMACA
+fogo1 = pygame.image.load('util/img/FOGO1.png').convert_alpha()
+fogo1 = pygame.transform.scale(fogo1, (ALTURA_OBJ, LARGURA_OBJ))
 
-pygame.mixer.music.load('util/sons/FRUIT-NINJA-fundo.mp3')
-pygame.mixer.music.set_volume(0.4)
+fogo2 = pygame.image.load('util/img/FOGO2.png').convert_alpha()
+fogo2 = pygame.transform.scale(fogo2, (ALTURA_OBJ, LARGURA_OBJ))
+
+fogo3 = pygame.image.load('util/img/FOGO3.png').convert_alpha()
+fogo3 = pygame.transform.scale(fogo3, (ALTURA_OBJ, LARGURA_OBJ))
+
+fogo4 = pygame.image.load('util/img/FOGO4.png').convert_alpha()
+fogo4 = pygame.transform.scale(fogo4, (ALTURA_OBJ, LARGURA_OBJ))
+
+fumaca1 = pygame.image.load('util/img/FUMACA1.png').convert_alpha()
+fumaca1 = pygame.transform.scale(fumaca1, (ALTURA_OBJ, LARGURA_OBJ))
+
+fumaca2 = pygame.image.load('util/img/FUMACA2.png').convert_alpha()
+fumaca2 = pygame.transform.scale(fumaca2, (ALTURA_OBJ, LARGURA_OBJ))
+
+fumaca3 = pygame.image.load('util/img/FUMACA3.png').convert_alpha()
+fumaca3 = pygame.transform.scale(fumaca3, (ALTURA_OBJ, LARGURA_OBJ))
+
+fumaca4 = pygame.image.load('util/img/FUMACA4.png').convert_alpha()
+fumaca4 = pygame.transform.scale(fumaca4, (ALTURA_OBJ, LARGURA_OBJ))
+
+lista_fogo = [fogo4, fogo3, fogo2, fogo1]
+lista_fumaca = [fumaca4, fumaca3, fumaca2, fumaca1]
 
 # ----- Inicia estruturas de dados
 
@@ -145,37 +209,142 @@ class Bombas(pygame.sprite.Sprite):
         
 #-----------------Classe Da Tela -----------------#
 class GameOverScreen:
-    def __init__(self, LARGURA, ALTURA, tempo_maximo):
+    def __init__(self, largura, altura, tempo_maximo):
         pygame.init()
-        self.LARGURA = LARGURA
-        self.ALTURA = ALTURA
+        self.largura = largura
+        self.altura = altura
         self.tempo_maximo = tempo_maximo
         self.tempo_inicial = time.time()
-        self.screen = pygame.display.set_mode((self.LARGURA, self.ALTURA))
+        self.screen = pygame.display.set_mode((self.largura, self.altura))
         pygame.display.set_caption('Game Over')
         self.font = pygame.font.Font("util/fonte/upheavtt.ttf", 60)
         self.text = self.font.render('Game Over', True, (200, 0, 0))
-        self.text_rect = self.text.get_rect(center=(self.LARGURA // 2, self.ALTURA // 2 - 10))
+        self.text_rect = self.text.get_rect(center=(self.largura // 2, self.altura // 2 - 10))
+        self.reiniciar = False
+        self.botao_reiniciar = pygame.Rect(self.largura // 2 - 100, self.altura // 2 + 50, 200, 50)
+        self.botao_reiniciar_texto = pygame.font.Font("util/fonte/upheavtt.ttf", 30).render('Reiniciar', True, (0, 0, 0))
+        self.botao_reiniciar_texto_rect = self.botao_reiniciar_texto.get_rect(center=self.botao_reiniciar.center)
 
     def run(self):
+        
         while True:
+            pygame.mouse.set_visible(True)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
-                    sys.exit()
+                    game = False
+                if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+                    mouse_x, mouse_y = pygame.mouse.get_pos()
+                    if self.botao_reiniciar < mouse_x < self.botao_reiniciar + self.largura and self.botao_reiniciar < mouse_y < self.botao_reiniciar + self.altura:
+                        self.reiniciar = True
 
             self.screen.fill((0, 0, 0))
             self.screen.blit(self.text, self.text_rect)
+            pygame.draw.rect(self.screen, (255, 255, 255), self.botao_reiniciar)
+            self.screen.blit(self.botao_reiniciar_texto, self.botao_reiniciar_texto_rect)
             pygame.display.flip()
+            
+            
+# class Fogo(pygame.sprite.Sprite):
+#     # Construtor da classe.
+#     def __init__(self, center, img):
+#         # Construtor da classe mãe (Sprite).
+#         pygame.sprite.Sprite.__init__(self)
 
-            # Verificar se o tempo máximo foi atingido
-            tempo_atual = time.time()
-            tempo_decorrido = tempo_atual - self.tempo_inicial
-            if tempo_decorrido >= self.tempo_maximo:
-                pygame.quit()
-                sys.exit()
+#         # Armazena a animação de explosão
+#         self.explosion_anim = lista_fogo
 
+#         # Inicia o processo de animação colocando a primeira imagem na tela.
+#         self.frame = 0  # Armazena o índice atual na animação
+#         self.image = self.explosion_anim[self.frame]  # Pega a primeira imagem
+#         self.rect = self.image.get_rect()
+#         self.rect.center = center  # Posiciona o centro da imagem
 
+#         # Guarda o tick da primeira imagem, ou seja, o momento em que a imagem foi mostrada
+#         self.last_update = pygame.time.get_ticks()
+
+#         # Controle de ticks de animação: troca de imagem a cada self.frame_ticks milissegundos.
+#         # Quando pygame.time.get_ticks() - self.last_update > self.frame_ticks a
+#         # próxima imagem da animação será mostrada
+#         self.frame_ticks = 50
+
+#     def update(self):
+#         # Verifica o tick atual.
+#         now = pygame.time.get_ticks()
+#         # Verifica quantos ticks se passaram desde a ultima mudança de frame.
+#         elapsed_ticks = now - self.last_update
+
+#         # Se já está na hora de mudar de imagem...
+#         if elapsed_ticks > self.frame_ticks:
+#             # Marca o tick da nova imagem.
+#             self.last_update = now
+
+#             # Avança um quadro.
+#             self.frame += 1
+
+#             # Verifica se já chegou no final da animação.
+#             if self.frame == len(self.explosion_anim):
+#                 # Se sim, tchau explosão!
+#                 self.kill()
+#             else:
+#                 # Se ainda não chegou ao fim da explosão, troca de imagem.
+#                 center = self.rect.center
+#                 self.image = self.explosion_anim[self.frame]
+#                 self.rect = self.image.get_rect()
+#                 self.rect.center = center
+                
+# class Fumaca(pygame.sprite.Sprite):
+#     # Construtor da classe.
+#     def __init__(self, center, img):
+#         # Construtor da classe mãe (Sprite).
+#         pygame.sprite.Sprite.__init__(self)
+
+#         # Armazena a animação de explosão
+#         self.explosion_anim = lista_fumaca
+
+#         # Inicia o processo de animação colocando a primeira imagem na tela.
+#         self.frame = 0  # Armazena o índice atual na animação
+#         self.image = self.explosion_anim[self.frame]  # Pega a primeira imagem
+#         self.rect = self.image.get_rect()
+#         self.rect.center = center  # Posiciona o centro da imagem
+
+#         # Guarda o tick da primeira imagem, ou seja, o momento em que a imagem foi mostrada
+#         self.last_update = pygame.time.get_ticks()
+
+#         # Controle de ticks de animação: troca de imagem a cada self.frame_ticks milissegundos.
+#         # Quando pygame.time.get_ticks() - self.last_update > self.frame_ticks a
+#         # próxima imagem da animação será mostrada
+#         self.frame_ticks = 50
+
+#     def update(self):
+#         # Verifica o tick atual.
+#         now = pygame.time.get_ticks()
+#         # Verifica quantos ticks se passaram desde a ultima mudança de frame.
+#         elapsed_ticks = now - self.last_update
+
+#         # Se já está na hora de mudar de imagem...
+#         if elapsed_ticks > self.frame_ticks:
+#             # Marca o tick da nova imagem.
+#             self.last_update = now
+
+#             # Avança um quadro.
+#             self.frame += 1
+
+#             # Verifica se já chegou no final da animação.
+#             if self.frame == len(self.explosion_anim):
+#                 # Se sim, tchau explosão!
+#                 self.kill()
+#             else:
+#                 # Se ainda não chegou ao fim da explosão, troca de imagem.
+#                 center = self.rect.center
+#                 self.image = self.explosion_anim[self.frame]
+#                 self.rect = self.image.get_rect()
+#                 self.rect.center = center
+                
+# class Machado(pygame.sprite.Sprite):
+#     def __init__(self, img):
+        
+        
 ##A- Cria grupos
 todas_bombas = pygame.sprite.Group()
 todas_logos = pygame.sprite.Group()
@@ -186,7 +355,7 @@ n_logos = random.randint(0, 6)
 n_bombas = random.randint(0, 2)  
 
 for i in range(n_bombas):
-    bomba = Bombas(bomba_img)
+    bomba = Bombas(bomba_1)
     todas_bombas.add(bomba)
 
 for i in range(n_logos):
@@ -198,7 +367,6 @@ for i in range(n_logos):
 #------- mouse
 
 pygame.mouse.set_visible(False)
-# faca_img_rect = faca_img.get_rect()
 machado_img_rect = machado_img.get_rect()
 
 
@@ -206,7 +374,7 @@ machado_img_rect = machado_img.get_rect()
     
 # Variável para o ajuste de velocidade
 clock = pygame.time.Clock()
-FPS = 60
+FPS = 40
 
 #variáveis do jogo
 Score = 0
@@ -215,7 +383,8 @@ vida = 3
 game = True
 
 # ===== Loop principal =====
-pygame.mixer.music.play(loops=-1) #para tocar a música de fundo em loop
+# pygame.mixer.music.play(loops=-1) #para tocar a música de fundo em loop
+
 while game:
     #definindo tempo para execução do loop
     clock.tick(FPS)
@@ -229,11 +398,13 @@ while game:
     if vida == 0:
         game_over_screen = GameOverScreen(LARGURA, ALTURA, 1)  # escreve "Game Over" por # segundos e encessa o jogo
         game_over_screen.run()
-        game = False
-            
+
+    todas_bombas.update()
+    todas_logos.update()
+    
+    
     #obtem a posição do mouse para cortar as frutas  
     mouse_x, mouse_y = pygame.mouse.get_pos()
-    
     
     #--------- trata das logos e bombas
     for logo in todas_logos:
@@ -262,7 +433,7 @@ while game:
         n_bombas = random.randint(0, 2)  
         
         for i in range(n_bombas):
-            bomba = Bombas(bomba_img)
+            bomba = Bombas(bomba_1)
             todas_bombas.add(bomba)
 
         for i in range(n_logos):
