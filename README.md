@@ -25,4 +25,4 @@ Sobre o jogo:
   Gabrielly Carneiro Susko
   Lucas Santos Teixeira
   
-  Vídeo do projeto: 
+  Vídeo do projeto: https://youtu.be/0mQCj9Kmd2g
