@@ -1,7 +1,8 @@
 # -Pygame-Insper-Ninja
-"""
-PARA JOGAR, EXECUTE O ARQUIVO "INSPER NINJAS"
 
+"""PARA JOGAR, EXECUTE O ARQUIVO "INSPER NINJAS""""
+
+"""
 O Jogo é uma versão do Fruit Ninja, mas com símbolos que representam os cursos do Insper:
 Engenharia Mecânica, Engenharia da Computação, Engenharia Mecatrônica, Ciências da Computação, Administração, Economia e Direito
 
