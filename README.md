@@ -1,6 +1,8 @@
-# -Pygame-Insper-Ninja
+#### -----------  INSPER NINJA  ----------- ####
 
-PARA JOGAR, EXECUTE O ARQUIVO "INSPER NINJAS
+PARA JOGAR, EXECUTE O ARQUIVO "INSPER NINJAS.py" 
+
+É necessário ter a biblioteca Pygame instalada
 
 Sobre o jogo:
   O Jogo é uma versão do Fruit Ninja, mas com símbolos que representam os cursos do Insper:
@@ -14,3 +16,13 @@ Sobre o jogo:
   Ao final de três vidas, o jogo acaba
 
   A cada 1000 pontos que o jogador consegue, a velocidade do jogo aumenta
+  
+  Considerações Finais:
+  
+  Projeto Final da disciplina de Design de Software do curso de engenharia do Insper, realizado pelos alunos:
+  
+  Alison Araujo de Oliveira
+  Gabrielly Carneiro Susko
+  Lucas Santos Teixeira
+  
+  Vídeo do projeto: https://youtu.be/0mQCj9Kmd2g
