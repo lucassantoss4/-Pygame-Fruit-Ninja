@@ -31,6 +31,11 @@ def Jogando(janela):
         if vida == 0:  # Verifica se a vida do jogador é igual a zero
             state = PERDEU #muda o estado para tela de game over
             game = False  # Encerra o jogo
+            for logo in todas_logos:
+                logo.kill()
+            for bomba in todas_bombas:
+                bomba.kill()
+
             
 
         mouse_x, mouse_y = pygame.mouse.get_pos()  # Obtém a posição do mouse
