@@ -22,8 +22,6 @@ def Jogando(janela):
     while game:
         clock.tick(FPS)  # Limita o FPS do jogo
         
-        state = 1
-        
         for event in pygame.event.get():  # Obtém todos os eventos do Pygame
             if event.type == pygame.QUIT:  # Verifica se o evento é o de fechar a janela
                 pygame.quit()

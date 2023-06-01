@@ -21,4 +21,4 @@ LARGURA_OBJ = 60
 INICIAR = 0
 JOGAR = 1
 PERDEU = 2
-CANSOU = 3
+CANSOU = 3 #defini apenas para sair do loop em algum momento

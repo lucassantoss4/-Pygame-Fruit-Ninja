@@ -1,6 +1,5 @@
 import pygame
 import sys
-import time
 from Constantes import *
 from Imagens import *
 from Classes import *
