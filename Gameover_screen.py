@@ -11,7 +11,7 @@ def Tela_Game_Over(LARGURA, ALTURA, Score):
     
     #cria tudo que vai aparecer na tela final
     screen = pygame.display.set_mode((LARGURA, ALTURA))  # cria a tela
-    pygame.display.set_caption('Game Over')  # nome da tela
+    pygame.display.set_caption('Insper Ninjas')  # nome da tela
     font = pygame.font.Font("util/fonte/upheavtt.ttf", 60)  # fonte do texto
     font2 = pygame.font.Font("util/fonte/upheavtt.ttf", 90) # fonte do score
     font3 = pygame.font.Font("util/fonte/upheavtt.ttf", 30) # fonte do reinicar
